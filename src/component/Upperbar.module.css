@@ -1,0 +1,167 @@
+.Upperbar {
+    position: fixed;
+    background: #FFF;
+    box-shadow: 0px 4px 11px -2px rgba(0, 0, 0, 0.15);
+    height: 112px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: -10px -5px 0 -5px;
+    z-index: 99;
+}
+
+.utilities {
+    display: flex;
+    flex-direction: row;
+    padding-left: 67px;
+}
+
+.logoDiv {
+    background-color: white;
+    border: none;
+    display: flex;
+    flex-direction: row;
+}
+
+.homeButton {
+    margin-top: 29px;
+    width: 74px;
+    height: 53px;
+}
+
+.logoText {
+    color: #5604DD;
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.96px;
+    margin-top: 10px;
+    margin-left: 25px;
+    border:none;
+    background-color: #FFF;
+}
+
+.form {
+    display: flex;
+    flex-direction: row;
+}
+
+.searchUser {
+    height: 52px;
+    width: 351px;
+    font-size: 20px;
+    border-radius: 10px;
+    background-color: #F3F3F3;
+    padding-left: 10px;
+    margin-top: 29px;
+    margin-left: 48px;
+    border: none;
+}
+
+.searchUserOn{
+    height: 52px;
+    width: 351px;
+    font-size: 20px;
+    border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0px 4px 11px 2px rgba(0, 0, 0, 0.25);
+    padding-left: 10px;
+    margin-top: 29px;
+    margin-left: 48px;
+    border: none;
+    z-index: 990;
+}
+
+.searchUser::placeholder {
+    color: #6F6F6F;
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.searchResult{
+    position: fixed;
+    top: 80px;
+    left: 315px;
+    width: 365px;
+    height: 280px;
+    flex-shrink: 0;
+    border-radius: 0 0 10px 10px;
+    background: #FFF;
+    box-shadow: 0px 4px 11px 2px rgba(0, 0, 0, 0.25);
+    z-index: 900;  
+}
+
+.searchIcon {
+    width: 21px;
+    height: 21px;
+    margin-top: 46px;
+    margin-left: -37px;
+}
+
+.searchButton:hover {
+    background-color: transparent;
+    color: #277BD6
+}
+
+.notifications {
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.message {
+    height: 50px;
+    width: 50px;
+    transition: 0.3s;
+}
+
+.message:hover {
+    width: 55px;
+}
+
+.alarm {
+    height: 45px;
+    width: 45px;
+    transition: 0.3s;
+}
+
+.alarm:hover {
+    height: 50px;
+}
+
+.userpage {
+    margin-left: -5px;
+    border-radius: 50%;
+    border: 2px solid #5604DD;
+    height: 50px;
+    width: 50px;
+    transition: 0.3s;
+}
+
+.userpage:hover{
+    height: 55px;
+    width: 55px;
+}
+
+.compostition {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+
+.newNoti {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+}

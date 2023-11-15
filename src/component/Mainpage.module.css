@@ -1,0 +1,28 @@
+
+.Upperbar {
+    z-index: 990;
+}
+
+.mainPage {
+    display: flex;
+    flex-direction: row;
+    margin-top: 112px;
+    min-height: 1080px;
+    padding-left: 86px;
+    padding-right: 86px;
+}
+
+
+.Mainmydata{
+    display : flex;
+    justify-content : center;
+}
+
+
+.groupShow {
+    margin-left: 86px;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+

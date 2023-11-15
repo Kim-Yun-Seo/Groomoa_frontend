@@ -1,0 +1,160 @@
+[
+    {
+        "group_id": "619",
+        "group_name": "가나  다라마바사 ",
+        "group_host": "Dugdale",
+        "group_limit": 5,
+        "create_date": "2023-11-05T15:22:03Z",
+        "end_date": "2023-11-26T19:28:52Z",
+        "group_description": "게임같이할사람모아요",
+        "group_user_list":[
+            "13", "2", "15"
+        ]
+    },
+    {
+        "group_id": "4391",
+        "group_name": "Tampflex",
+        "group_host": "Vuitte",
+        "group_limit": 4,
+        "create_date": "2023-11-03T21:38:59Z",
+        "end_date": "2023-11-18T23:45:54Z",
+        "group_description": null,
+        "group_user_list":[
+            "13", "2"
+        ]
+    },
+    {
+        "group_id": "2431",
+        "group_name": "Span",
+        "group_host": "Artiss",
+        "group_limit": 3,
+        "create_date": "2023-11-01T12:34:55Z",
+        "end_date": "2023-11-20T14:10:03Z",
+        "group_description": null,
+        "group_user_list":[
+            "21"
+        ]
+    },
+    {
+        "group_id": "51",
+        "group_name": "Job",
+        "group_host": "Blas",
+        "group_limit": 16,
+        "create_date": "2023-11-14T15:58:01Z",
+        "end_date": "2023-11-20T20:23:10Z",
+        "group_description": null,
+        "group_user_list":[
+            "5","16","17","29"
+        ]
+    },
+    {
+        "group_id": "4295",
+        "group_name": "Quo Lux",
+        "group_host": "Fulmen",
+        "group_limit": 8,
+        "create_date": "2023-11-09T05:19:01Z",
+        "end_date": "2023-11-26T21:04:50Z",
+        "group_description": null,
+        "group_user_list":""
+    },
+    {
+        "group_id": "96",
+        "group_name": "Kanlam",
+        "group_host": "Radenhurst",
+        "group_limit": 12,
+        "create_date": "2023-11-09T09:11:37Z",
+        "end_date": "2023-11-21T19:01:29Z",
+        "group_description": null,
+        "group_user_list":""
+    },
+    {
+        "group_id": "14",
+        "group_name": "Trippledex",
+        "group_host": "Kneaphsey",
+        "group_limit": 6,
+        "create_date": "2023-11-16T03:24:17Z",
+        "end_date": "2023-11-19T17:11:57Z",
+        "group_description": null,
+        "group_user_list":""
+    },
+    {
+        "group_id": "1",
+        "group_name": "Hatity",
+        "group_host": "Ings",
+        "group_limit": 8,
+        "create_date": "2023-11-10T09:58:20Z",
+        "end_date": "2023-11-27T01:05:37Z",
+        "group_description": null,
+        "group_user_list":""
+    },
+    {
+        "group_id": "994",
+        "group_name": "Tempsoft",
+        "group_host": "Gaythwaite",
+        "group_limit": 9,
+        "create_date": "2023-11-09T18:00:00",
+        "end_date": "2023-11-22T11:34:54",
+        "group_description": null,
+        "group_user_list":""
+    },
+    {
+        "group_id": "33",
+        "group_name": "Alpha",
+        "group_host": "Cartmel",
+        "group_limit": 8,
+        "create_date": "2023-11-06T18:23:38",
+        "end_date": "2023-11-19T18:55:54",
+        "group_description": null,
+        "group_user_list":""
+    },
+    {
+        "group_id": "9",
+        "group_name": "Keylex",
+        "group_host": "Barbie",
+        "group_limit": 11,
+        "create_date": "2023-11-04T14:23:39Z",
+        "end_date": "2023-11-18T15:12:45Z",
+        "group_description": null,
+        "group_user_list":""
+    },
+    {
+        "group_id": "658",
+        "group_name": "Viva",
+        "group_host": "Snead",
+        "group_limit": 12,
+        "create_date": "2023-11-16T16:44:57Z",
+        "end_date": "2023-11-23T02:14:16Z",
+        "group_description": null,
+        "group_user_list":""
+    },
+    {
+        "group_id": "3",
+        "group_name": "Sonair",
+        "group_host": "Fellows",
+        "group_limit": 4,
+        "create_date": "2023-11-11T01:17:45Z",
+        "end_date": "2023-11-25T14:47:14Z",
+        "group_description": null,
+        "group_user_list":""
+    },
+    {
+        "group_id": "622",
+        "group_name": "Zathin",
+        "group_host": "Colson",
+        "group_limit": 6,
+        "create_date": "2023-11-02T21:05:36Z",
+        "end_date": "2023-11-23T13:12:28Z",
+        "group_description": null,
+        "group_user_list":""
+    },
+    {
+        "group_id": "26",
+        "group_name": "Quo Lux",
+        "group_host": "Crayk",
+        "group_limit": 5,
+        "create_date": "2023-11-14T20:27:39Z",
+        "end_date": "2023-11-28T03:36:09Z",
+        "group_description": null,
+        "group_user_list":""
+    }
+]

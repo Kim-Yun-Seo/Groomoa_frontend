@@ -1,0 +1,141 @@
+.loginPage {
+    display: flex;
+    justify-content: center;
+}
+
+.login {
+    margin-top: 200px;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 73.15px;
+}
+
+.goormImage {
+    height: 151px;
+    width: 210px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: -20px;
+}
+
+.goormLogo {
+    display: flex;
+    justify-content: center;
+    color: #5F0CE7;
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    height: 33px;
+    line-height: normal;
+    letter-spacing: 5.32px;
+}
+
+.idpwd {
+    width: 590px;
+    height: 69px;
+    flex-shrink: 0;
+    border: 1px solid #1D1D1D;
+    background: #FFF;
+    padding-inline-start: 10px;
+    font-size: 20px;
+}
+.idpwd:first-child {
+    margin-bottom : 32px;
+}
+
+.idpwd::placeholder {
+    color: #6F6F6F;
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.showPwdDiv {
+    margin-top: -75px;
+    display: flex;
+    height: 16px;
+    justify-content: end;
+    padding-right: 10px;
+}
+
+.buttons {
+    margin-top: 67px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/* Base */
+.loginButton {
+    width: 272px;
+    height: 67px;
+    flex-shrink: 0;
+    border: none;
+    background: #5F0CE7;
+    color: #FFF;
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    transition: 0.2s;
+}
+
+.loginButton:hover {
+    border: 2px solid #5F0CE7;
+    background-color: #ffffff;
+    color: #5F0CE7;
+}
+
+.signUpButton {
+    width: 272px;
+    height: 67px;
+    flex-shrink: 0;
+    border: 2px solid #5F0CE7;
+    background: #FFFFFF;
+    color: #5F0CE7;
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    transition: 0.2s;
+}
+
+.signUpButton:hover {
+    color: #ffffff;
+    background-color: #5F0CE7;
+}
+
+.wrong {
+    margin-top: -145px;
+    color: #F00;
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    /* 150% */
+}
+
+.testInfo{
+    margin-top: 100px;
+    position:absolute;
+    top: 800px;
+}

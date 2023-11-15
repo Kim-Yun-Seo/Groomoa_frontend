@@ -1,0 +1,87 @@
+.dataList {
+    margin-top: 68px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 274px;
+    background-color: #FFFFFF;
+    border-radius: 34px;
+    padding: 29px 34px 0px 34px;
+}
+
+.profile {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.userIcon {
+    border-radius: 50%;
+    width: 75px;
+    height: 75px;
+}
+
+.textData {
+    margin-top: -10px;
+    margin-left: 25px;
+    display: flex;
+    flex-direction: column;
+    width: 170px;
+}
+
+.id {
+    color: #1D1D1D;
+    font-family: Pretendard;
+    font-size: 21px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.7px;
+}
+
+.name {
+    color: #1D1D1D;
+    font-family: Pretendard;
+    font-size: 19px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.follow {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0px 25px 0px 25px; 
+}
+
+.texts {
+    color: #6F6F6F;
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.texts span {
+    margin-left: 10px;
+    color: #5604DD;
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.following{
+    display: flex;
+    flex-direction: row;
+}
+
+.underLine {
+    width: 274px;
+}
