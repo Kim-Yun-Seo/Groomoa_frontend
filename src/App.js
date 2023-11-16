@@ -3,6 +3,7 @@ import MainPage from "./component/Mainpage";
 import Mypage from "./component/Mypage";
 import Login from "./component/Login";
 import IsLogined from "./component/IsLogined";
+import style from "./global.css"
 
 function App() {
   return (

@@ -24,7 +24,7 @@
 .textData {
     margin-top: -10px;
     margin-left: 25px;
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     width: 170px;
 }
@@ -46,10 +46,11 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    margin-top: -8px;
 }
 
 .follow {
-    margin-top: 32px;
+    /* margin-top: 32px; */
     display: flex;
     flex-direction: row;
     justify-content: space-between;

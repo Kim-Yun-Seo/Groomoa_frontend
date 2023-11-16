@@ -37,7 +37,7 @@ const DetailModal = ({ isOpen, close, groupId }) => {
             </div>
             <div className={css.mainData}>
                 <p className={css.detailCategory}>{groupInfo.category}</p>
-                <p className={css.detailDL}>~{groupInfo.deadLine}</p>
+                <p className={css.detailDL}>~ {groupInfo.deadLine}</p>
                 <p className={css.detailTitle}>{groupInfo.title}</p>
                 <p className={css.detailDetail}>{groupInfo.detail}</p>
                 <p className={css.partList}>참여 인원 목록</p>

@@ -41,6 +41,7 @@
     border: none;
     width: 22px;
     margin-left: -48px;
+    cursor: pointer;
 }
 
 .newGoorm {
@@ -53,6 +54,7 @@
     justify-content: center;
     border: none;
     transition: 0.1s;
+    cursor: pointer;
 }
 
 .newGoorm:hover {
@@ -121,6 +123,7 @@
     font-weight: 400;
     line-height: normal;
     background-color: transparent;
+    cursor: pointer;
 }
 
 .clicked {

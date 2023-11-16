@@ -28,6 +28,7 @@
     margin-top: 29px;
     width: 74px;
     height: 53px;
+    cursor: pointer;
 }
 
 .logoText {
@@ -122,6 +123,7 @@
     height: 50px;
     width: 50px;
     transition: 0.3s;
+    cursor: pointer;
 }
 
 .message:hover {
@@ -132,6 +134,7 @@
     height: 45px;
     width: 45px;
     transition: 0.3s;
+    cursor: pointer;
 }
 
 .alarm:hover {
@@ -145,6 +148,7 @@
     height: 50px;
     width: 50px;
     transition: 0.3s;
+    cursor: pointer;
 }
 
 .userpage:hover{
