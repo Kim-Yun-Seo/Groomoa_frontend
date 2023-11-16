@@ -14,6 +14,12 @@ import UserMenuModal from "./Modals/UserMenuModal";
 
 const Upperbar = () => {
 
+    const userId = "park";
+    const groupId = "abc";
+    const handleChatGo = () => {
+        movePage(`/chat-room/${groupId}/${userId}`);
+    }
+
     //const userImage = localStorage.getItem("userIcon");
     const [isNotiOpen, setNotiOpen] = useState(false);
     const [isNewNoti, setNewNoti] = useState(false);
@@ -89,6 +95,7 @@ const Upperbar = () => {
                         searchResult={searchResult}
                     />
                 </div>}
+                <button style={{border:"none", fontSize:"20px"}} onClick={handleChatGo}>GotoChat</button>
             </div>
             <div className={css.notifications}>
                 <div>
