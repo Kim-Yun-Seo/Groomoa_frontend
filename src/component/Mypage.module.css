@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: column;
     justify-content: left;
+    height: 100%;
 }
 
 .myData {
@@ -19,7 +20,7 @@
 
 .myDataProfile {
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row; */
 }
 
 .myDataImg {
@@ -31,23 +32,12 @@
     display: flex;
     flex-direction: column;
     margin-left: 35px;
-}
-
-.textData :first-child {
-    color: #1D1D1D;
-    font-family: Pretendard;
-    font-size: 30px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: 1.05px;
+    margin-top: -12px;
 }
 
 .follow {
-    margin-top: 32px;
+    margin-top: -25px;
     display: flex;
-    flex-direction: row;
-    justify-content: left;
 }
 
 .follow :first-child {
@@ -66,7 +56,7 @@
 
 .texts span {
     margin-left: 10px;
-    color: #5604DD;
+    color: #5604DD !important; 
     font-family: Pretendard;
     font-size: 16px;
     font-style: normal;
@@ -75,13 +65,71 @@
 }
 
 .interest {
-    position: relative;
+    /* position: relative; */
     left: 600px;
+    display: flex;
+    /* flex-direction: row; */
+    border-left: 1px solid #D9D9D9 ;
+    margin-left: 262px;
+}
+
+.interestTitle {
+    margin-left: 30px;
+    color: #5604DD;
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+}
+
+.interestCategory {
     display: flex;
     flex-direction: row;
 }
 
-.interestCaregory {
+.id {
+    color: #1D1D1D;
+    font-family: Pretendard;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 1.05px;
+}
+
+.name {
+    margin-top: -25px;
+    color: #1D1D1D;
+    font-family: Pretendard;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.followBtn {
+    margin: 5px 5px 0 0;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    background: #5604DD;
+    width: 150px;
+    height: 40px;
+    flex-shrink: 0;
+    color: white;
+    margin-left: 30px;
+    margin-top: 10px;
+}
+
+.groupData {
+    margin-top: 67px;
+    padding: 27px 38px 27px 38px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    width: 100%;
+    height: 700px;
+    background-color: #FFF;
+    border-radius: 20px;
 }
