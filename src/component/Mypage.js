@@ -5,7 +5,6 @@ import Groups from "./Groups";
 import userImage from "../images/users/hostImage.svg";
 import css from "./Mypage.module.css";
 
-
 const Mypage = () => {
 
   const movePage = useNavigate();
@@ -36,6 +35,8 @@ const Mypage = () => {
       }
     }
   )
+
+
   const [ following, setFollowing ] = useState(
       [
           {
@@ -141,8 +142,14 @@ const Mypage = () => {
                 <p className={css.id}>@{userInfo.userInfo.userEmail}</p>
                 <p className={css.name}>{userInfo.userInfo.userName}</p>
                 <div className={css.follow}>
-                  <p className={css.texts}>팔로잉<span>{following.length}</span></p>
-                  <p className={css.texts}>팔로워<span>{follower.length}</span></p>
+                  <p className={css.texts} 
+                    onClick={
+                    () => {console.log('팔로잉 목록 =' , )}
+                  }>팔로잉<span>{following.length}</span></p>
+                  <p className={css.texts} 
+                    onClick={
+                    () => {console.log('팔로우 목록 =' , )}
+                  }>팔로워<span>{follower.length}</span></p>
                 </div>
               </div>
               <div>
@@ -155,13 +162,16 @@ const Mypage = () => {
           <div className={css.interest}>
             <p className={css.interestTitle}>관심사</p>
             <div className={css.interestCategory}>
-              <p>게임</p>
-              <p>프로젝트</p>
+              <p className={css.category}>게임</p>
+              <p className={css.category}>프로젝트</p>
             </div>
           </div>
         </div>
         <div className={css.groupData}>
-          kdldl
+          <div>
+            <button className={css.groupBtn} onClick={() => console.log('구름 필터링 =' , )}>모집한 구름</button>
+            <button className={css.groupBtn} onClick={() => console.log('구름 필터링 =' , )}>참가한 구름</button>
+          </div>
         </div>
       </div>
     </div>

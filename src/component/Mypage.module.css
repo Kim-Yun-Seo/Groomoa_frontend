@@ -52,6 +52,7 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    cursor: pointer;
 }
 
 .texts span {
@@ -81,12 +82,27 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-
+    margin-top: 50px;
 }
 
 .interestCategory {
-    display: flex;
     flex-direction: row;
+}
+
+.category {
+    border-radius: 23px;
+    border: 1px solid #5604DD;
+    color: #5604DD;
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-align: center;
+    display: inline-flex;
+    padding: 13px 40px;
+    margin-left: 20px;
+    margin-top: 40px;
 }
 
 .id {
@@ -133,3 +149,22 @@
     background-color: #FFF;
     border-radius: 20px;
 }
+
+.groupBtn {
+    width: 293px;
+    height: 44px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #F3F3F3;
+    border: none;
+    color: #5604DD;
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-left: 63px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
