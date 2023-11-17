@@ -1,12 +1,6 @@
 import { useEffect, useState } from 'react';
 import css from './DetailModal.module.css';
 import closeImg from "../../images/close.svg";
-import user1 from "../../images/users/user1.svg";
-import user2 from "../../images/users/user2.svg";
-import user3 from "../../images/users/user3.svg";
-import user4 from "../../images/users/user4.svg";
-import user5 from "../../images/users/user5.svg";
-import hostImage from "../../images/users/hostImage.svg";
 
 const DetailModal = ({ isOpen, close, groupId }) => {
     const [modalOpen, setModalOpen] = useState(isOpen);
@@ -16,7 +10,66 @@ const DetailModal = ({ isOpen, close, groupId }) => {
         close();
     }
 
-    const [ groupInfo, setGroupInfo ] = useState("");
+    const [ groupInfo, setGroupInfo ] = useState({
+        "groupId": 1,
+        "host": {
+            "userId": 11,
+            "userEmail": "11",
+            "userName": "김정목"
+        },
+        "closeDate": null,
+        "groupTitle": "모임1",
+        "groupInfo": "모임 설명",
+        "participants": [
+            {
+                "userId": 10,
+                "userEmail": "10",
+                "userName": "김정목",
+                "profileId": 9,
+                "profileImg": null
+            },
+            {
+                "userId": 10,
+                "userEmail": "10",
+                "userName": "김정목",
+                "profileId": 9,
+                "profileImg": null
+            },
+            {
+                "userId": 11,
+                "userEmail": "11",
+                "userName": "김정목",
+                "profileId": 10,
+                "profileImg": null
+            }
+        ],
+        "applicants": [
+            {
+                "userId": 10,
+                "userEmail": "10",
+                "userName": "김정목",
+                "profileId": 9,
+                "profileImg": null
+            },
+            {
+                "userId": 10,
+                "userEmail": "10",
+                "userName": "김정목",
+                "profileId": 9,
+                "profileImg": null
+            },
+            {
+                "userId": 11,
+                "userEmail": "11",
+                "userName": "김정목",
+                "profileId": 10,
+                "profileImg": null
+            }
+        ],
+        "maxCount": null,
+        "currentCount": 1,
+        "close": null
+    });
     const userId = localStorage.getItem("userId");
     const authToken = localStorage.getItem("key");
     useEffect(() => {

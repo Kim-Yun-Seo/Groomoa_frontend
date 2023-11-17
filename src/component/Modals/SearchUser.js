@@ -7,6 +7,13 @@ const SearchUser = ({isOpen, searchResult}) => {
             {isOpen && (
                 <div>
                     <div>
+                        {
+                            searchResult.map((user)=>(
+                                <div key={user.usrId}>
+                                    <p>{user.userName}</p>
+                                </div>
+                            ))
+                        }
                     </div>
                 </div>
             )}

@@ -34,7 +34,36 @@ const Upperbar = () => {
     const movePage = useNavigate();
     const homeClick = () => { movePage('/main') }
     const [search, setSearch] = useState('');
-    const [searchResult, setSearchResult] = useState([]);
+    const [searchResult, setSearchResult] = useState([
+        {
+            "userId": 1,
+            "userEmail": "1",
+            "userName": "김정목",
+            "profileId": 1,
+            "profileImg": null
+        },
+        {
+            "userId": 2,
+            "userEmail": "2",
+            "userName": "김정목2",
+            "profileId": 2,
+            "profileImg": null
+        },
+        {
+            "userId": 3,
+            "userEmail": "3",
+            "userName": "김정목3",
+            "profileId": 3,
+            "profileImg": null
+        },
+        {
+            "userId": 4,
+            "userEmail": "4",
+            "userName": "김정목4",
+            "profileId": 4,
+            "profileImg": null
+        }
+    ]);
     const [isSearchOpen, setSearchOpen] = useState(false);
 
     const authToken = localStorage.getItem("key");
