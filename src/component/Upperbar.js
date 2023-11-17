@@ -14,7 +14,7 @@ import UserMenuModal from "./Modals/UserMenuModal";
 
 const Upperbar = () => {
 
-    const userId = "park";
+    const userId = localStorage.getItem("userId");
     const groupId = "abc";
     const handleChatGo = () => {
         movePage(`/chat-room/${groupId}/${userId}`);
@@ -131,7 +131,7 @@ const Upperbar = () => {
                 </div>
                 <div>
                     <img src={userImage} className={css.userpage} onClick={() => movePage('/mypage')} />
-                    {<UserMenuModal isOpen={isUserMenuOpen} />}
+                    {<UserMenuModal isOpen={isUserMenuOpen} userId={userId}/>}
                 </div>
 
             </div>

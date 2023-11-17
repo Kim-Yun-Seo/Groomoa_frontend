@@ -1,6 +1,6 @@
 import Upperbar from "./Upperbar";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useInsertionEffect, useState } from "react";
 import Groups from "./Groups";
 import css from "./Mypage.module.css";
 import userImage from "../images/users/user1.svg"
@@ -12,15 +12,24 @@ const Mypage = () => {
   const movePage = useNavigate();
   const authToken = localStorage.getItem("key");
   const [userInfo, setUserInfo] = useState({
-    "profileId": 10,
+    "profileId": null,
     "userInfo": {
       "userId": 11,
       "userEmail": "11",
-      "userName": "김정목"
+      "userName": "홍성주"
     },
     "profileInfo": {
-      "profileImg": userIcon,
-      "interestings": null
+      "profileImg": "수정된이미지",
+      "interestings": [
+        {
+          "categoryId": 1,
+          "category": "게임"
+        },
+        {
+          "categoryId": 2,
+          "category": "프로젝트"
+        }
+      ]
     }
   });
   useEffect(() => {
@@ -91,18 +100,88 @@ const Mypage = () => {
     fetchData();
   }, []);
 
-  const isMe = useEffect(() => {
-    //지금 로그인 유저가 이 페이지의 userid와 같은지 확인한다.
-    //지금 로그인 유저에 대한 정보가 필요함 
-    //localstorage에 userId나 userEmail 갖다넣고 쓰자
-
-    const now = '' //현재 로그인 유저
-
-    if (now === userInfo.userInfo.userEmail) {
-      return false;
+  const approach = localStorage.getItem("userId");
+  const [isMe, setIsMe] = useState(false);
+  useEffect(() => {
+    if (approach === userInfo.userInfo.userId) {
+      setIsMe(true);
     }
-  },[])
+  }, [])
 
+  const [apiURL, setApiUrl] = useState('http://13.125.111.84:8081/group/myGroups');
+  const [groupList, setGroupList] = useState([
+    {
+      "groupId": 1,
+      "host": {
+        "userId": 11,
+        "userEmail": "11",
+        "userName": "김정목"
+      },
+      "category": "게임",
+      "closeDate": null,
+      "groupTitle": "모임1",
+      "groupInfo": "모임 설명",
+      "maxCount": null,
+      "currentCount": 1,
+      "close": false
+    },
+    {
+      "groupId": 2,
+      "host": {
+        "userId": 11,
+        "userEmail": "11",
+        "userName": "김정목"
+      },
+      "category": "프로젝트",
+      "closeDate": null,
+      "groupTitle": "모임2",
+      "groupInfo": "모임 설명",
+      "maxCount": null,
+      "currentCount": 1,
+      "close": false
+    },
+    {
+      "groupId": 3,
+      "host": {
+        "userId": 11,
+        "userEmail": "11",
+        "userName": "김정목"
+      },
+      "category": "운동/스포츠",
+      "closeDate": null,
+      "groupTitle": "모임3",
+      "groupInfo": "모임 설명",
+      "maxCount": null,
+      "currentCount": 1,
+      "close": false
+    }
+  ]);
+  useEffect(() => {
+    if (!isMe) { setApiUrl((prev) => prev + { approach }) }
+    const fetchData = async () => {
+      try {
+        const response = await fetch(apiURL, {
+          method: "GET",
+          headers: {
+            'Authorization': `Bearer ${authToken}`,
+          },
+        });
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setGroupList(data);
+        console.log(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+    fetchData();
+  }, []);
+
+  const [rop, setROP] = useState(false);
+  // rop = recruit or praticipate. false = 모집한 그룹, true = 참여중인 그룹
+  
   return (
     <div className="pageSize">
       <Upperbar />
@@ -125,17 +204,24 @@ const Mypage = () => {
               </div>
             </div>
             <div>
-              <button className={css.followBtn} style={{ visibility: isMe ? "hidden" : "visible" }}
+              {isMe ? null : <button className={css.followBtn}
                 onClick={() => {
                   console.log('팔로우 기능 구현 =',)
-                }}>팔로우</button>
+                }}>팔로우</button>}
+            </div>
+            <div>
+              {!isMe ? null : <button className={css.followBtn}
+                onClick={() => {
+                  console.log('수정기능',)
+                }}>프로필 편집</button>}
             </div>
           </div>
           <div className={css.interest}>
             <p className={css.interestTitle}>관심사</p>
             <div className={css.interestCategory}>
-              <p className={css.category}>게임</p>
-              <p className={css.category}>프로젝트</p>
+              {userInfo.profileInfo.interestings.map((interests) => (
+                <p className={css.category} key={interests.categoryId}>{interests.category}</p>
+              ))}
             </div>
           </div>
         </div>

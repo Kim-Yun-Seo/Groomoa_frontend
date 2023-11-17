@@ -34,7 +34,7 @@ const Login = () => {
     }
 
     const handleLogin = async (e) => {
-
+        // 아래줄 지워야함
         localStorage.setItem("key", "not setted key");
         movePage('/main');
         e.preventDefault();
@@ -58,7 +58,6 @@ const Login = () => {
                 const authToken = data.token;
                 const userId = data.userId;
                 localStorage.setItem("key", authToken);
-                localStorage.setItem("userId", userId);
                 movePage('/main');
             } else {
                 console.log("Login failed");
