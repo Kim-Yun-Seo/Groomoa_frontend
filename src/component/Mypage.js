@@ -6,9 +6,11 @@ import css from "./Mypage.module.css";
 import userImage from "../images/users/user1.svg";
 import ModifyProfile from "./Modals/ModifyProfile";
 import { useParams } from "react-router-dom";
+import Goorm from "./Goorm";
 
 const Mypage = () => {
   const { parameter } = useParams();
+  console.log(parameter);
   const userIcon = userImage;
 
   const [isModifyOpen, setModifyOpen] = useState(false);
@@ -17,25 +19,23 @@ const Mypage = () => {
 
   const movePage = useNavigate();
   const authToken = localStorage.getItem("key");
-  const [userInfo, setUserInfo] = useState({
-    "profileId": null,
+  const [profile, setProfile] = useState({
+    "profileId": 10,
     "userInfo": {
-      "userId": 11,
-      "userEmail": "11",
-      "userName": "홍성주"
+        "userId": 11,
+        "userEmail": "11",
+        "userName": "김정목"
     },
     "profileInfo": {
-      "profileImg": "수정된이미지",
-      "interestings": [
-        {"categoryId": 1, "category": "게임"},
-        {"categoryId": 2, "category": "프로젝트"}
-      ]
+        "profileImg": "/star.jpg",
+        "interestings": null
     }
-  });
+});
+  const url = "http://13.209.26.40:8081/profile/";
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://13.125.111.84:8081/profile', {
+        const response = await fetch(url, {
           method: "GET",
           headers: {
             'Authorization': `Bearer ${authToken}`,
@@ -45,14 +45,15 @@ const Mypage = () => {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        setUserInfo(data);
-        console.log(userInfo);
+        setProfile(data);
+        console.log(data);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     }
     fetchData();
-  }, isModifyOpen);
+  }, []);
+
 
   const [followings, setFollowings] = useState([]);
   useEffect(() => {
@@ -101,22 +102,26 @@ const Mypage = () => {
   }, []);
 
   const [userId, setUserId] = useState("")
-  useEffect(() => { 
-    if(parameter == "my"){
+  useEffect(() => {
+    if (parameter == "my") {
       setUserId("");
     } else {
       setUserId(parameter);
     }
-  },[])
+  }, [])
 
-  const [isMe, setIsMe] = useState(false);
+  const [isMe, setIsMe] = useState(true);
   useEffect(() => {
-    if (userId === userInfo.userInfo.userId) {
+    if (userId === profile.userInfo.userId) {
       setIsMe(true);
     }
   }, [])
 
-  const [apiURL, setApiUrl] = useState('http://13.125.111.84:8081/group/myGroups');
+  const [apiURL, setApiUrl] = useState('http://13.209.26.40:8081/group/myGroups');
+  if (!isMe) {
+    setApiUrl(`http://13.209.26.40:8081/group/myGroups/${parameter}`);
+    console.log(apiURL);
+  }
   const [groupList, setGroupList] = useState(
     [
       {
@@ -134,7 +139,7 @@ const Mypage = () => {
             "groupInfo": "모임 설명",
             "maxCount": null,
             "currentCount": 1,
-            "close": null
+            "close": null,
           },
           {
             "groupId": 2,
@@ -149,7 +154,7 @@ const Mypage = () => {
             "groupInfo": "모임 설명",
             "maxCount": null,
             "currentCount": 1,
-            "close": null
+            "close": null,
           },
         ],
         "participatingGroups": [
@@ -173,9 +178,7 @@ const Mypage = () => {
     ]
   );
   useEffect(() => {
-    if (isMe == false) {
-      setApiUrl(`http://13.125.111.84:8081/group/myGroups/${userId}`)
-    }
+    console.log(isMe);
     const fetchData = async () => {
       console.log(apiURL);
       try {
@@ -198,39 +201,57 @@ const Mypage = () => {
     }
     fetchData();
   }, []);
-  
-  const recruits = !groupList? groupList.filter(groups => groups.recruitingGroups) : [];
-  const closedRecruits = !recruits?recruits.filter(group => group.close === true):null;
-  const openRecruits = !recruits?recruits.filter(group => group.close === false):null;
-
-  const participating = !groupList? groupList.filter(group => group.participatingGroups):[]; 
-  const closedParts = !participating ? participating.filter(group => group.close === true) : null;
-  const openParts = !participating? participating.filter(group => group.close === false):null;
-
-  
 
   // 필터링 옵션으로 하고 싶었는데 진짜 머리가 더이상 안돌아가서 노가다로 할게....
   const followUser = async () => {
-    try {
-      const response = await fetch('http://13.209.26.40:8081/follow/following', {
-        method: "POST",
-        headers: {
-          'Authorization': `Bearer ${authToken}`,
-        },
-      });
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
+    if (isMe) {
+      console.log("its me")
+      try {
+        const response = await fetch('http://13.209.26.40:8081/follow/following', {
+          method: "POST",
+          headers: {
+            'Authorization': `Bearer ${authToken}`,
+          },
+        });
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setFollowings(data);
+        console.log(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
       }
-      const data = await response.json();
-      setGroupList(data);
-      console.log(data);
-    } catch (error) {
-      console.error('Error fetching data:', error);
+    } else {
+      console.log("its not me");
+      try {
+        const response = await fetch(`http://13.209.26.40:8081/follow/following/${parameter}`, {
+          method: "POST",
+          headers: {
+            'Authorization': `Bearer ${authToken}`,
+          },
+        });
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setFollowings(data);
+        console.log(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
     }
   }
 
   const handleFollowClick = () => {
     followUser();
+  }
+  const [isDetailModalOpen, setDetailModalOpen] = useState(false);
+  const [modalById, setModalById] = useState("");
+  const handleDetailModalClose = () => { setDetailModalOpen(false); }
+  const handleDetailModalOpen = (groupId) => {
+    setModalById(groupId);
+    setDetailModalOpen(true);
   }
 
   // following 상태면 follow button 사라지게 해야됨....
@@ -240,10 +261,10 @@ const Mypage = () => {
       <div className={css.myPage}>
         <div className={css.myData}>
           <div className={css.myDataProfile}>
-            <img className={css.myDataImg} src={userInfo.profileInfo.profileImg}></img>
+            <img className={css.myDataImg} src={profile.profileInfo.profileImg}></img>
             <div className={css.textData}>
-              <p className={css.id}>@{userInfo.userInfo.userEmail}</p>
-              <p className={css.name}>{userInfo.userInfo.userName}</p>
+              <p className={css.id}>@{profile.userInfo.userEmail}</p>
+              <p className={css.name}>{profile.userInfo.userName}</p>
               <div className={css.follow}>
                 <p className={css.texts}
                   onClick={
@@ -272,7 +293,7 @@ const Mypage = () => {
           <div className={css.interest}>
             <p className={css.interestTitle}>관심사</p>
             <div className={css.interestCategory}>
-              {!userInfo.profileInfo.interestings ? <p>no interest</p> : userInfo.profileInfo.interestings.map((interests) => (
+              {!profile.profileInfo.interestings ? <p>no interest</p> : profile.profileInfo.interestings.map((interests) => (
                 <p className={css.category} key={interests.categoryId}>{interests.category}</p>
               ))}
             </div>
@@ -280,8 +301,13 @@ const Mypage = () => {
         </div>
         <div className={css.groupData}>
           <div>
-            <button className={css.groupBtn} onClick={() => console.log('구름 필터링 =',)}>모집한 구름</button>
-            <button className={css.groupBtn} onClick={() => console.log('구름 필터링 =',)}>참가한 구름</button>
+            {
+              <ul className={css.partyContainer}>
+              </ul>}
+            <button className={css.groupBtn} onClick={() => console.log('구름 필터링 =',)}>방장 : 진행</button>
+            <button className={css.groupBtn} onClick={() => console.log('구름 필터링 =',)}>방장 : 마감</button>
+            <button className={css.groupBtn} onClick={() => console.log('구름 필터링 =',)}>참가 : 진행</button>
+            <button className={css.groupBtn} onClick={() => console.log('구름 필터링 =',)}>참가 : 마감</button>
           </div>
           <div>
           </div>

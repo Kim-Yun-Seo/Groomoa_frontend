@@ -23,8 +23,6 @@ const Goorm = ({ value }) => {
         <div className={css.profile}>
           <img className={css.userIcon} src={userImage}></img>
           <div className={css.textData}>
-            <p className={css.id}>@{host.userEmail}</p>
-            <p className={css.name}>{host.userName}</p>
           </div>
         </div>
       </div>

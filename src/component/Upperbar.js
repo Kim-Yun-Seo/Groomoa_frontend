@@ -138,7 +138,7 @@ const Upperbar = () => {
                     {<NotiModal isOpen={isNotiOpen} />}
                 </div>
                 <div>
-                    <img src={userImage} className={css.userpage} onClick={() => movePage('/mypage/my')} />
+                    <img src={userImage} className={css.userpage} onClick={() => movePage(`/mypage/${"my"}`)} />
                     {<UserMenuModal isOpen={isUserMenuOpen} userId={userId} />}
                 </div>
             </div>

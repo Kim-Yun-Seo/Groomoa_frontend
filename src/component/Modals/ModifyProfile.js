@@ -26,17 +26,21 @@ const ModifyProfile = ({ isOpen, close }) => {
     const authToken = localStorage.getItem("key");
     const apiURL = "http://13.209.26.40:8081/profile";
     const body = {
+        "profileId": 3,
         "userInfo": {
-            "userId": userProfile.userInfo.userId,
+            "userId": 3,
+            "userEmail": "rabbit",
+            "userName": "rabbit"
         },
         "profileInfo": {
-            "interestings": ["게임"]
+            "profileImg": null,
+            "category": null
         }
     }
     const postProfile = async () => {
         try {
             const res = await fetch(apiURL, {
-                method: "PATCH",
+                method: "POST",
                 headers: {
                     'Authorization': `Bearer ${authToken}`,
                     'Content-Type': 'application/json',

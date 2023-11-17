@@ -62,7 +62,8 @@ export default function Groups() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://13.209.26.40:8081/grou', {
+                //url 일부러 조져놓음 더미데이터 만들어지면 다시 연결하기
+                const response = await fetch('http://13.209.26.40:8081/group', {
                     method: "GET",
                     headers: {
                         'Authorization': `Bearer ${authToken}`,

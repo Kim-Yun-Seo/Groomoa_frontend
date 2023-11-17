@@ -33,16 +33,16 @@ const NewGroupMake = ({ isOpen, close, hostId }) => {
     const [title, setTitle] = useState("");
     const [detail, setDetail] = useState("");
     const [maxParticipants, setMaxParticipants] = useState("");
-
     const authToken = localStorage.getItem("key");
     const apiURL = "http://13.209.26.40:8081/group";
     const body = {
-        "groupTitle" : title,
-        "groupDetail" : detail,
-        "maxParticipants" : maxParticipants,
-        "closeDate" : getFormattedDate(),
-        "category" : selectedCategory
+        "groupTitle": "테스트 그룹 1",
+        "groupInfo": "테스트 그룹 1 입니다.",
+        "maxCount": 5,
+        "category": "GAME",
+        "closeDate": "2023-11-13T15:30:00"
     }
+
     const postGroup = async () => {
         try {
             const res = await fetch(apiURL, {
