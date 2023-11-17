@@ -96,7 +96,7 @@ const DetailModal = ({ isOpen, close, groupId }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://13.125.111.84:8081/group/${groupId}`, {
+                const response = await fetch(`http://13.209.26.40:8081/group/${groupId}`, {
                     method: "GET",
                     headers: {
                         'Authorization': `Bearer ${authToken}`,

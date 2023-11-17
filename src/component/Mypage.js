@@ -212,7 +212,7 @@ const Mypage = () => {
   // 필터링 옵션으로 하고 싶었는데 진짜 머리가 더이상 안돌아가서 노가다로 할게....
   const followUser = async () => {
     try {
-      const response = await fetch('http://13.125.111.84:8081/follow/following', {
+      const response = await fetch('http://13.209.26.40:8081/follow/following', {
         method: "POST",
         headers: {
           'Authorization': `Bearer ${authToken}`,

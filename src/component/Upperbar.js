@@ -65,13 +65,11 @@ const Upperbar = () => {
         }
     ]);
     const [isSearchOpen, setSearchOpen] = useState(false);
-
     const authToken = localStorage.getItem("key");
-
     const [allUserList, setAllUserList] = useState([]);
     const searchClicked = async () => {
         try {
-            const response = await fetch(`http://13.125.111.84:8081/users`, {
+            const response = await fetch(`http://13.209.26.40:8081/users`, {
                 method: "GET",
                 headers: {
                     'Authorization': `Bearer ${authToken}`,
@@ -94,7 +92,6 @@ const Upperbar = () => {
             console.error('Error fetching data:', error);
         }
     };
-
 
     const handleShowButtonClick = (userId) => {
         movePage(`/mypage/${userId}`);
@@ -144,7 +141,6 @@ const Upperbar = () => {
                     <img src={userImage} className={css.userpage} onClick={() => movePage('/mypage/my')} />
                     {<UserMenuModal isOpen={isUserMenuOpen} userId={userId} />}
                 </div>
-
             </div>
 
         </div>

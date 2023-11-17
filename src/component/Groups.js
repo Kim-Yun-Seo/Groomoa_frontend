@@ -62,7 +62,7 @@ export default function Groups() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://13.125.111.84:8081/group', {
+                const response = await fetch('http://13.209.26.40:8081/grou', {
                     method: "GET",
                     headers: {
                         'Authorization': `Bearer ${authToken}`,

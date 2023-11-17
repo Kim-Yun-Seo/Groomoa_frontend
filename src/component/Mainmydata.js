@@ -19,7 +19,7 @@ const Mainmydata = () => {
             "interestings": null
         }
     });
-    const url = "http://13.125.111.84:8081/profile/";
+    const url = "http://13.209.26.40:8081/profile/";
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -32,7 +32,6 @@ const Mainmydata = () => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                console.log("오긴함");
                 const data = await response.json();
                 setProfile(data);
                 console.log(data);
@@ -64,7 +63,7 @@ const Mainmydata = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://13.125.111.84:8081/follow/following', {
+                const response = await fetch('http://13.209.26.40:8081/follow/following', {
                     method: "GET",
                     headers: {
                         'Authorization': `Bearer ${authToken}`,
@@ -105,7 +104,7 @@ const Mainmydata = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://13.125.111.84:8081/follow/follower', {
+                const response = await fetch('http://13.209.26.40:8081/follow/followers', {
                     method: "GET",
                     headers: {
                         'Authorization': `Bearer ${authToken}`,
@@ -153,7 +152,7 @@ const Mainmydata = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://13.125.111.84:8081/recommend', {
+                const response = await fetch('http://13.209.26.40:8081/recommend', {
                     method: "GET",
                     headers: {
                         'Authorization': `Bearer ${authToken}`,

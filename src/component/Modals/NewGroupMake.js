@@ -35,7 +35,7 @@ const NewGroupMake = ({ isOpen, close, hostId }) => {
     const [maxParticipants, setMaxParticipants] = useState("");
 
     const authToken = localStorage.getItem("key");
-    const apiURL = "http://13.125.111.84:8081/group";
+    const apiURL = "http://13.209.26.40:8081/group";
     const body = {
         "groupTitle" : title,
         "groupDetail" : detail,
