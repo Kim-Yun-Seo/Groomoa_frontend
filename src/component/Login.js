@@ -33,9 +33,6 @@ const Login = () => {
     }
 
     const handleLogin = async (e) => {
-        // // 아래줄 지워야함
-        // localStorage.setItem("key", "not setted key");
-        // movePage('/main');
         e.preventDefault();
         const apiURL = 'http://13.209.26.40:8081/login';
         const requestbody = {

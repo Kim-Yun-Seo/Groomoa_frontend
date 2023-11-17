@@ -7,11 +7,12 @@ import userImage from "../images/users/user1.svg";
 import ModifyProfile from "./Modals/ModifyProfile";
 import { useParams } from "react-router-dom";
 import Goorm from "./Goorm";
+import DetailModal from "./Modals/DetailModal";
 
 const Mypage = () => {
-  const { parameter } = useParams();
+  const inUrl = useParams();
+  const [ parameter, setParameter] = useState(inUrl.userId);
   console.log(parameter);
-  const userIcon = userImage;
 
   const [isModifyOpen, setModifyOpen] = useState(false);
   const handleModifyOpen = () => { setModifyOpen(true) };
@@ -22,20 +23,19 @@ const Mypage = () => {
   const [profile, setProfile] = useState({
     "profileId": 10,
     "userInfo": {
-        "userId": 11,
-        "userEmail": "11",
-        "userName": "김정목"
+      "userId": 11,
+      "userEmail": "11",
+      "userName": "김정목"
     },
     "profileInfo": {
-        "profileImg": "/star.jpg",
-        "interestings": null
+      "profileImg": "/star.jpg",
+      "interestings": null
     }
-});
-  const url = "http://13.209.26.40:8081/profile/";
+  });
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(url, {
+        const response = await fetch('http://13.209.26.40:8081/profile', {
           method: "GET",
           headers: {
             'Authorization': `Bearer ${authToken}`,
@@ -45,6 +45,7 @@ const Mypage = () => {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
+        console.log(data);
         setProfile(data);
         console.log(data);
       } catch (error) {
@@ -82,7 +83,7 @@ const Mypage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://13.125.111.84:8081/follow/follower', {
+        const response = await fetch('http://13.125.111.84:8081/follow/followers', {
           method: "GET",
           headers: {
             'Authorization': `Bearer ${authToken}`,
@@ -123,64 +124,13 @@ const Mypage = () => {
     console.log(apiURL);
   }
   const [groupList, setGroupList] = useState(
-    [
-      {
-        "recruitingGroups": [
-          {
-            "groupId": 1,
-            "host": {
-              "userId": 11,
-              "userEmail": "11",
-              "userName": "김정목"
-            },
-            "category": null,
-            "closeDate": null,
-            "groupTitle": "모임1",
-            "groupInfo": "모임 설명",
-            "maxCount": null,
-            "currentCount": 1,
-            "close": null,
-          },
-          {
-            "groupId": 2,
-            "host": {
-              "userId": 11,
-              "userEmail": "11",
-              "userName": "김정목"
-            },
-            "category": null,
-            "closeDate": null,
-            "groupTitle": "모임2",
-            "groupInfo": "모임 설명",
-            "maxCount": null,
-            "currentCount": 1,
-            "close": null,
-          },
-        ],
-        "participatingGroups": [
-          {
-            "groupId": 3,
-            "host": {
-              "userId": 11,
-              "userEmail": "11",
-              "userName": "김정목"
-            },
-            "category": null,
-            "closeDate": null,
-            "groupTitle": "모임2",
-            "groupInfo": "모임 설명",
-            "maxCount": null,
-            "currentCount": 1,
-            "close": null
-          },
-        ]
-      }
-    ]
+    {
+      recruitingGroups: [],
+      participatingGroups: [],
+    }
   );
   useEffect(() => {
-    console.log(isMe);
     const fetchData = async () => {
-      console.log(apiURL);
       try {
         const response = await fetch(apiURL, {
           method: "GET",
@@ -196,7 +146,6 @@ const Mypage = () => {
         console.log(data);
       } catch (error) {
         console.error('Error fetching data:', error);
-
       }
     }
     fetchData();
@@ -247,10 +196,11 @@ const Mypage = () => {
     followUser();
   }
   const [isDetailModalOpen, setDetailModalOpen] = useState(false);
-  const [modalById, setModalById] = useState("");
+  const [modalById, setModalById] = useState(0);
   const handleDetailModalClose = () => { setDetailModalOpen(false); }
   const handleDetailModalOpen = (groupId) => {
     setModalById(groupId);
+    console.log(modalById);
     setDetailModalOpen(true);
   }
 
@@ -299,10 +249,23 @@ const Mypage = () => {
             </div>
           </div>
         </div>
+        {isDetailModalOpen &&
+          <DetailModal
+            isOpen={isDetailModalOpen}
+            close={handleDetailModalClose}
+            groupId={modalById}
+
+          />
+        }
         <div className={css.groupData}>
           <div>
             {
               <ul className={css.partyContainer}>
+                {groupList.recruitingGroups.map((group) => (
+                  <a className={css.groups} key={group.groupId} onClick={() => handleDetailModalOpen(group.groupId)}>
+                    <Goorm className={css.goorm} value={group} />
+                  </a>
+                ))}
               </ul>}
             <button className={css.groupBtn} onClick={() => console.log('구름 필터링 =',)}>방장 : 진행</button>
             <button className={css.groupBtn} onClick={() => console.log('구름 필터링 =',)}>방장 : 마감</button>

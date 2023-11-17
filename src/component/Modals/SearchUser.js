@@ -14,7 +14,9 @@ const SearchUser = ({isOpen, searchResult, handleShowButtonClick}) => {
                                     <div>
                                         <img src={user.profileImg}></img>
                                         <p>{user.userName}</p>
-                                        <button onClick={()=>handleShowButtonClick(user.userId)}>show</button>
+                                        <button onClick={()=>{handleShowButtonClick(user.userId);
+                                        console.log("worked!");
+                                        }}>show</button>
                                     </div>
                                 </div>
                             ))

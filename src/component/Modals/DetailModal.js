@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import css from './DetailModal.module.css';
 import closeImg from "../../images/close.svg";
 
-const DetailModal = ({ isOpen, close, groupId }) => {
+const DetailModal = ({isOpen, close, groupId}) => {
+    console.log(groupId);
     const [modalOpen, setModalOpen] = useState(isOpen);
 
     const handleCloseModal = () => {
@@ -95,6 +96,7 @@ const DetailModal = ({ isOpen, close, groupId }) => {
     const authToken = localStorage.getItem("key");
     useEffect(() => {
         const fetchData = async () => {
+            console.log(groupId);
             try {
                 const response = await fetch(`http://13.209.26.40:8081/group/${groupId}`, {
                     method: "GET",

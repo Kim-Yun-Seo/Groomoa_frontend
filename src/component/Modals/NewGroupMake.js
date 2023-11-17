@@ -26,7 +26,7 @@ const NewGroupMake = ({ isOpen, close, hostId }) => {
     const [modalOpen, setOpen] = useState(isOpen);
     const handleClose = () => { setOpen(false); close(); }
 
-    const category = ["🎮 게임", "📚 스터디", "🖥️ 프로젝트", '🎬 문화/공연', '⚾️ 운동/스포츠', '🫶 사교/인맥', '🛩️ 여행', '기타'];
+    const category = ["게임", "스터디", "프로젝트", '문화', '운동', '사교', '여행', '기타'];
     const [selectedCategory, setSelectedCategory] = useState(null);
     const handleCategoryClick = (category) => { setSelectedCategory(category === selectedCategory ? null : category); };
 
@@ -36,12 +36,13 @@ const NewGroupMake = ({ isOpen, close, hostId }) => {
     const authToken = localStorage.getItem("key");
     const apiURL = "http://13.209.26.40:8081/group";
     const body = {
-        "groupTitle": "테스트 그룹 1",
-        "groupInfo": "테스트 그룹 1 입니다.",
-        "maxCount": 5,
-        "category": "GAME",
-        "closeDate": "2023-11-13T15:30:00"
+        "groupTitle": title,
+        "groupInfo": detail,
+        "maxCount": maxParticipants,
+        "category": selectedCategory,
+        "closeDate": "2023-11-21T17:30:00"
     }
+    console.log(JSON.stringify(body));
 
     const postGroup = async () => {
         try {
@@ -51,7 +52,7 @@ const NewGroupMake = ({ isOpen, close, hostId }) => {
                     'Authorization': `Bearer ${authToken}`,
                     'Content-Type' : 'application/json',
                 },
-                body : body,
+                body : JSON.stringify(body),
             });
         } catch(error) {
             console.error('Error posting data:', error);
