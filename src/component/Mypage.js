@@ -3,11 +3,16 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useInsertionEffect, useState } from "react";
 import Groups from "./Groups";
 import css from "./Mypage.module.css";
-import userImage from "../images/users/user1.svg"
+import userImage from "../images/users/user1.svg";
+import ModifyProfile from "./Modals/ModifyProfile";
 
 const Mypage = () => {
   //temp
   const userIcon = userImage;
+
+  const [isModifyOpen, setModifyOpen] = useState(false);
+  const handleModifyOpen = () => { setModifyOpen(true) };
+  const handleModifyClose = () => { setModifyOpen(false) };
 
   const movePage = useNavigate();
   const authToken = localStorage.getItem("key");
@@ -21,14 +26,8 @@ const Mypage = () => {
     "profileInfo": {
       "profileImg": "수정된이미지",
       "interestings": [
-        {
-          "categoryId": 1,
-          "category": "게임"
-        },
-        {
-          "categoryId": 2,
-          "category": "프로젝트"
-        }
+        {"categoryId": 1, "category": "게임"},
+        {"categoryId": 2, "category": "프로젝트"}
       ]
     }
   });
@@ -52,7 +51,7 @@ const Mypage = () => {
       }
     }
     fetchData();
-  }, []);
+  }, isModifyOpen);
 
   const [followings, setFollowings] = useState([]);
   useEffect(() => {
@@ -100,65 +99,78 @@ const Mypage = () => {
     fetchData();
   }, []);
 
-  const approach = localStorage.getItem("userId");
+  const [userId, setUserId] = useState("default")
+  useEffect(() => { setUserId(localStorage.getItem("userId")) })
+
   const [isMe, setIsMe] = useState(false);
   useEffect(() => {
-    if (approach === userInfo.userInfo.userId) {
+    if (userId === userInfo.userInfo.userId) {
       setIsMe(true);
     }
   }, [])
 
   const [apiURL, setApiUrl] = useState('http://13.125.111.84:8081/group/myGroups');
-  const [groupList, setGroupList] = useState([
-    {
-      "groupId": 1,
-      "host": {
-        "userId": 11,
-        "userEmail": "11",
-        "userName": "김정목"
-      },
-      "category": "게임",
-      "closeDate": null,
-      "groupTitle": "모임1",
-      "groupInfo": "모임 설명",
-      "maxCount": null,
-      "currentCount": 1,
-      "close": false
-    },
-    {
-      "groupId": 2,
-      "host": {
-        "userId": 11,
-        "userEmail": "11",
-        "userName": "김정목"
-      },
-      "category": "프로젝트",
-      "closeDate": null,
-      "groupTitle": "모임2",
-      "groupInfo": "모임 설명",
-      "maxCount": null,
-      "currentCount": 1,
-      "close": false
-    },
-    {
-      "groupId": 3,
-      "host": {
-        "userId": 11,
-        "userEmail": "11",
-        "userName": "김정목"
-      },
-      "category": "운동/스포츠",
-      "closeDate": null,
-      "groupTitle": "모임3",
-      "groupInfo": "모임 설명",
-      "maxCount": null,
-      "currentCount": 1,
-      "close": false
-    }
-  ]);
+  const [groupList, setGroupList] = useState(
+    [
+      {
+        "recruitingGroups": [
+          {
+            "groupId": 1,
+            "host": {
+              "userId": 11,
+              "userEmail": "11",
+              "userName": "김정목"
+            },
+            "category": null,
+            "closeDate": null,
+            "groupTitle": "모임1",
+            "groupInfo": "모임 설명",
+            "maxCount": null,
+            "currentCount": 1,
+            "close": null
+          },
+          {
+            "groupId": 2,
+            "host": {
+              "userId": 11,
+              "userEmail": "11",
+              "userName": "김정목"
+            },
+            "category": null,
+            "closeDate": null,
+            "groupTitle": "모임2",
+            "groupInfo": "모임 설명",
+            "maxCount": null,
+            "currentCount": 1,
+            "close": null
+          },
+        ],
+        "participatingGroups": [
+          {
+            "groupId": 3,
+            "host": {
+              "userId": 11,
+              "userEmail": "11",
+              "userName": "김정목"
+            },
+            "category": null,
+            "closeDate": null,
+            "groupTitle": "모임2",
+            "groupInfo": "모임 설명",
+            "maxCount": null,
+            "currentCount": 1,
+            "close": null
+          },
+        ]
+      }
+    ]
+  );
   useEffect(() => {
-    if (!isMe) { setApiUrl((prev) => prev + { approach }) }
+    if (isMe == false) {
+      setApiUrl(`http://13.125.111.84:8081/group/myGroups/${userId}`)
+    }
     const fetchData = async () => {
+      console.log(apiURL);
       try {
         const response = await fetch(apiURL, {
           method: "GET",
@@ -174,14 +186,47 @@ const Mypage = () => {
         console.log(data);
       } catch (error) {
         console.error('Error fetching data:', error);
+
       }
     }
     fetchData();
   }, []);
-
-  const [rop, setROP] = useState(false);
-  // rop = recruit or praticipate. false = 모집한 그룹, true = 참여중인 그룹
   
+  const recruits = !groupList? groupList.filter(groups => groups.recruitingGroups) : [];
+  const closedRecruits = !recruits?recruits.filter(group => group.close === true):null;
+  const openRecruits = !recruits?recruits.filter(group => group.close === false):null;
+
+  const participating = !groupList? groupList.filter(group => group.participatingGroups):[]; 
+  const closedParts = !participating ? participating.filter(group => group.close === true) : null;
+  const openParts = !participating? participating.filter(group => group.close === false):null;
+
+  
+
+  // 필터링 옵션으로 하고 싶었는데 진짜 머리가 더이상 안돌아가서 노가다로 할게....
+  const followUser = async () => {
+    try {
+      const response = await fetch('http://13.125.111.84:8081/follow/following', {
+        method: "POST",
+        headers: {
+          'Authorization': `Bearer ${authToken}`,
+        },
+      });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      setGroupList(data);
+      console.log(data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  }
+
+  const handleFollowClick = () => {
+    followUser();
+  }
+
+  // following 상태면 follow button 사라지게 해야됨....
   return (
     <div className="pageSize">
       <Upperbar />
@@ -205,21 +250,22 @@ const Mypage = () => {
             </div>
             <div>
               {isMe ? null : <button className={css.followBtn}
-                onClick={() => {
-                  console.log('팔로우 기능 구현 =',)
-                }}>팔로우</button>}
+                onClick={handleFollowClick}>팔로우</button>}
             </div>
+            {isModifyOpen &&
+              <ModifyProfile
+                isOpen={isModifyOpen}
+                close={handleModifyClose}
+              />}
             <div>
               {!isMe ? null : <button className={css.followBtn}
-                onClick={() => {
-                  console.log('수정기능',)
-                }}>프로필 편집</button>}
+                onClick={handleModifyOpen}>프로필 편집</button>}
             </div>
           </div>
           <div className={css.interest}>
             <p className={css.interestTitle}>관심사</p>
             <div className={css.interestCategory}>
-              {userInfo.profileInfo.interestings.map((interests) => (
+              {!userInfo.profileInfo.interestings ? <p>no interest</p> : userInfo.profileInfo.interestings.map((interests) => (
                 <p className={css.category} key={interests.categoryId}>{interests.category}</p>
               ))}
             </div>
@@ -229,6 +275,8 @@ const Mypage = () => {
           <div>
             <button className={css.groupBtn} onClick={() => console.log('구름 필터링 =',)}>모집한 구름</button>
             <button className={css.groupBtn} onClick={() => console.log('구름 필터링 =',)}>참가한 구름</button>
+          </div>
+          <div>
           </div>
         </div>
       </div>

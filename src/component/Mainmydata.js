@@ -19,7 +19,7 @@ const Mainmydata = () => {
             "interestings": null
         }
     });
-    const url = "http://13.125.111.84:8081/profile";
+    const url = "http://13.125.111.84:8081/profile/";
     useEffect(() => {
         const fetchData = async () => {
             try {

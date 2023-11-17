@@ -9,10 +9,14 @@ import MakeGoorm from "./MakeGoorm";
 
 const Mainpage = () => {
   const [userId, setUserId] = useState("default");
+  const movePage = useNavigate();
+  //이거 지워야함
   localStorage.setItem("userId", userId);
   const authToken = localStorage.getItem("key");
 
   useEffect(() => {
+    if(!localStorage.getItem("key"))
+    {movePage('/')}
     const fetchData = async () => {
       try {
         const response = await fetch('http://13.125.111.84:8081/profile', {
@@ -25,7 +29,7 @@ const Mainpage = () => {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        setUserId(data.userInfo.userId);
+        setUserId(data.userInfo.userEmail);
         localStorage.setItem("userId", userId);
         console.log(data);
       } catch (error) {
