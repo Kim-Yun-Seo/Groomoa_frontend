@@ -15,7 +15,7 @@ function App() {
             <Route path={"/"} element={<IsLogined />}></Route>
             <Route path={"/login"} element={<Login />}></Route>
             <Route path={"/main"} element={<MainPage />}></Route>
-            <Route path={"/mypage"} element={<Mypage />}></Route>
+            <Route path={"/mypage/:userId"} element={<Mypage />}></Route>
             <Route path="/chat-room/:roomId/:userId" element={<Chat />}></Route>
           </Routes>
       </SocketContextProvider>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-const SearchUser = ({isOpen, searchResult}) => {
+const SearchUser = ({isOpen, searchResult, handleShowButtonClick}) => {
     console.log(searchResult)
     return (
         <div>
@@ -9,15 +10,18 @@ const SearchUser = ({isOpen, searchResult}) => {
                     <div>
                         {
                             searchResult.map((user)=>(
-                                <div key={user.usrId}>
-                                    <p>{user.userName}</p>
+                                <div key={user.userId}>
+                                    <div>
+                                        <img src={user.profileImg}></img>
+                                        <p>{user.userName}</p>
+                                        <button onClick={()=>handleShowButtonClick(user.userId)}>show</button>
+                                    </div>
                                 </div>
                             ))
                         }
                     </div>
                 </div>
-            )}
-        </div>
+            )}        </div>
     )
 }
 export default SearchUser;

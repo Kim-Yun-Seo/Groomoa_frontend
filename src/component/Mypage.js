@@ -5,9 +5,10 @@ import Groups from "./Groups";
 import css from "./Mypage.module.css";
 import userImage from "../images/users/user1.svg";
 import ModifyProfile from "./Modals/ModifyProfile";
+import { useParams } from "react-router-dom";
 
 const Mypage = () => {
-  //temp
+  const { parameter } = useParams();
   const userIcon = userImage;
 
   const [isModifyOpen, setModifyOpen] = useState(false);
@@ -99,8 +100,14 @@ const Mypage = () => {
     fetchData();
   }, []);
 
-  const [userId, setUserId] = useState("default")
-  useEffect(() => { setUserId(localStorage.getItem("userId")) })
+  const [userId, setUserId] = useState("")
+  useEffect(() => { 
+    if(parameter == "my"){
+      setUserId("");
+    } else {
+      setUserId(parameter);
+    }
+  },[])
 
   const [isMe, setIsMe] = useState(false);
   useEffect(() => {

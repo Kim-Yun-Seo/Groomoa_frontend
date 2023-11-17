@@ -32,6 +32,7 @@ const Mainmydata = () => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
+                console.log("오긴함");
                 const data = await response.json();
                 setProfile(data);
                 console.log(data);

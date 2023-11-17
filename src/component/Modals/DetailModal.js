@@ -41,6 +41,27 @@ const DetailModal = ({ isOpen, close, groupId }) => {
                 "userName": "김정목",
                 "profileId": 10,
                 "profileImg": null
+            },
+            {
+                "userId": 10,
+                "userEmail": "10",
+                "userName": "김정목",
+                "profileId": 9,
+                "profileImg": null
+            },
+            {
+                "userId": 10,
+                "userEmail": "10",
+                "userName": "김정목",
+                "profileId": 9,
+                "profileImg": null
+            },
+            {
+                "userId": 11,
+                "userEmail": "11",
+                "userName": "김정목",
+                "profileId": 10,
+                "profileImg": null
             }
         ],
         "applicants": [
@@ -66,7 +87,7 @@ const DetailModal = ({ isOpen, close, groupId }) => {
                 "profileImg": null
             }
         ],
-        "maxCount": null,
+        "maxCount": 12,
         "currentCount": 1,
         "close": null
     });

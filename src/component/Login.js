@@ -6,7 +6,6 @@ import showPwd from '../images/showPwd.svg';
 
 const Login = () => {
     const movePage = useNavigate();
-
     const [formData, setFormData] = useState({
         userEmail: '',
         userPassword: ''

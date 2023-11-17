@@ -90,12 +90,14 @@
 .partUList {
     background-color: #FFFFFF;
     border-radius: 10px;
-    width: 95%;
-    height: 170px;
+    width: 100%;
+    min-width: 600px;
+    height: 110%;
+    min-height: 100px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    padding: 0px;
+    padding: 10px 30px 10px 0;
     overflow: scroll;
 }
 

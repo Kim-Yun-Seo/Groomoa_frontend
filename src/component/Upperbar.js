@@ -67,29 +67,39 @@ const Upperbar = () => {
     const [isSearchOpen, setSearchOpen] = useState(false);
 
     const authToken = localStorage.getItem("key");
-    useEffect(() => {
-        if (isSearchOpen) {
-            const fetchData = async () => {
-                try {
-                    const response = await fetch('http://13.125.111.84:8081/users', {
-                        method: "GET",
-                        headers: {
-                            'Authorization': `Bearer ${authToken}`,
-                        },
-                    });
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    const data = await response.json();
-                    setSearchResult(data);
-                    console.log(data);
-                } catch (error) {
-                    console.error('Error fetching data:', error);
-                }
+
+    const [allUserList, setAllUserList] = useState([]);
+    const searchClicked = async () => {
+        try {
+            const response = await fetch(`http://13.125.111.84:8081/users`, {
+                method: "GET",
+                headers: {
+                    'Authorization': `Bearer ${authToken}`,
+                },
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
             }
-            fetchData();
+            const data = await response.json();
+            setAllUserList(data);
+
+            const filteredUsers = data.filter((user) => {
+                const regex = new RegExp(search, 'ig');
+                return regex.test(user.userName);
+            });
+
+            setSearchResult(filteredUsers);
+            setSearchOpen(true);
+        } catch (error) {
+            console.error('Error fetching data:', error);
         }
-    }, [isSearchOpen, search]);
+    };
+
+
+    const handleShowButtonClick = (userId) => {
+        movePage(`/mypage/${userId}`);
+        setSearchOpen(false);
+    };
 
     const searchUserOpen = () => { setSearchOpen(true); setNotiOpen(false); setMsgOpen(false); setUserMenuOpen(false); }
     const alarmModalOpen = () => { setNotiOpen(true); setSearchOpen(false); setMsgOpen(false); setUserMenuOpen(false); }
@@ -107,15 +117,16 @@ const Upperbar = () => {
                     onChange={(e) => {
                         e.preventDefault();
                         setSearch(e.target.value);
-                        searchUserOpen(true);
                     }}
                     className={search != "" ? `${css.searchUserOn}` : `${css.searchUser}`}
                     placeholder="이름/아이디 검색하기"
                 />
-                {search && <div className={css.searchResult}>
+                <button onClick={searchClicked}><img src={searchIcon} /></button>
+                {isSearchOpen && <div className={css.searchResult}>
                     <SearchUser
                         isOpen={isSearchOpen}
                         searchResult={searchResult}
+                        handleShowButtonClick={handleShowButtonClick}
                     />
                 </div>}
                 <button style={{ border: "none", fontSize: "20px" }} onClick={handleChatGo}>GotoChat</button>
@@ -130,8 +141,8 @@ const Upperbar = () => {
                     {<NotiModal isOpen={isNotiOpen} />}
                 </div>
                 <div>
-                    <img src={userImage} className={css.userpage} onClick={() => movePage('/mypage')} />
-                    {<UserMenuModal isOpen={isUserMenuOpen} userId={userId}/>}
+                    <img src={userImage} className={css.userpage} onClick={() => movePage('/mypage/my')} />
+                    {<UserMenuModal isOpen={isUserMenuOpen} userId={userId} />}
                 </div>
 
             </div>
