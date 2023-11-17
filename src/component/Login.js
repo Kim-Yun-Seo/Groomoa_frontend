@@ -34,13 +34,11 @@ const Login = () => {
     }
 
     const handleLogin = async (e) => {
-        // 서버 박아서 일단 만들어놓음
-        localStorage.setItem("key", "not matching key");
-        movePage('/main');
 
+        localStorage.setItem("key", "not setted key");
+        movePage('/main');
         e.preventDefault();
         const apiURL = 'http://13.125.111.84:8081/login';
-        //const apiURL = 'https://dummyjson.com/auth/login'
         const requestbody = {
             userEmail: formData.userEmail,
             userPassword: formData.userPassword,
@@ -58,7 +56,9 @@ const Login = () => {
                 const data = await res.json();
                 console.log(data);
                 const authToken = data.token;
+                const userId = data.userId;
                 localStorage.setItem("key", authToken);
+                localStorage.setItem("userId", userId);
                 movePage('/main');
             } else {
                 console.log("Login failed");

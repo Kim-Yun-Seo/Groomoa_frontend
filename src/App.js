@@ -10,16 +10,16 @@ import style from "./global.css"
 function App() {
   return (
     <BrowserRouter>
-    <SocketContextProvider>
-      <Routes>
-        <Route path={"/"} element={<IsLogined />}></Route>
-        <Route path={"/login"} element={<Login />}></Route>
-        <Route path={"/main"} element={<MainPage />}></Route>
-        <Route path={"/mypage"} element={<Mypage />}></Route>
-        <Route path="/chat-room/:roomId/:userId" element={<Chat />} />
-      </Routes>
-    </SocketContextProvider>
-  </BrowserRouter>
+      <SocketContextProvider>
+        <Routes>
+          <Route path={"/"} element={<IsLogined />}></Route>
+          <Route path={"/login"} element={<Login />}></Route>
+          <Route path={"/main"} element={<MainPage />}></Route>
+          <Route path={"/mypage"} element={<Mypage />}></Route>
+          <Route path="/chat-room/:roomId/:userId" element={<Chat />}></Route>
+        </Routes>
+      </SocketContextProvider>
+    </BrowserRouter>
   );
 }
 

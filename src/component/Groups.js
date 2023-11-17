@@ -10,9 +10,30 @@ import NewGroupMake from './Modals/NewGroupMake';
 
 export default function Groups() {
 
-    //temporary;;;
-    const [userId, setUserId] = useState("1hvs243nfgh");
-    const groupList = groupDummy;
+    const [ groupList, setGroupList ] = useState("");
+    const userId = localStorage.getItem("userId");
+    const authToken = localStorage.getItem("key");
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch('http://13.125.111.84:8081/group', {
+                    method: "GET",
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`,
+                    },
+                });
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                setGroupList(data);
+                console.log(data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+        fetchData();
+    }, []);
 
     const [isDetailModalOpen, setDetailModalOpen] = useState(false);
     const [modalById, setModalById] = useState("");
@@ -21,36 +42,36 @@ export default function Groups() {
         setModalById(groupId);
         setDetailModalOpen(true);
     }
-    
+
     const filter = ['전체', '게임', '스터디', '프로젝트', '문화/공연', '운동/스포츠', '사교/인맥', '여행', '기타'];
     const [selected, setSelected] = useState('전체');
     const handleOptionClick = (value) => { setSelected(value); };
     const filteredGroups = selected === '전체' ? groupList : groupList.filter(group => group.category === selected);
 
-
     const [isNewModalOpen, setNewModalOpen] = useState(false);
     // 모달 open 시 userId => hostId 가능하도록 props 내리기
-    const handleNewModalOpen = () => {setNewModalOpen(true)};
-    const handleNewModalClose = () => {setNewModalOpen(false)};
+    const handleNewModalOpen = () => { setNewModalOpen(true) };
+    const handleNewModalClose = () => { setNewModalOpen(false) };
 
     return (
         <div className="pageBody">
-            {(isNewModalOpen||isDetailModalOpen) && (<div className={css.darkOverlay} onClick={handleNewModalClose}></div>)}
+            {(isNewModalOpen || isDetailModalOpen) && (<div className={css.darkOverlay} onClick={handleNewModalClose}></div>)}
             <div className={css.searchAndNew}>
-                <form onSubmit={()=>console.log("searchuser...")}>
+                <form onSubmit={() => console.log("searchuser...")}>
                     <input className={css.searchByKeyword}
                         placeholder='오늘은 어떤 구름에 참가하고 싶나요?'
                     >
                     </input>
                     <button className={css.searchButton}><img src={search}></img></button>
+                    <p> 여기 온클릭 이벤트 필요. 필터링 함수 사용하여 검색결과 노출하기. 자동랜더링 x </p>
                 </form>
-                {isNewModalOpen && 
-                    <NewGroupMake 
-                    className={css.newGroupMake}
-                    isOpen = {isNewModalOpen}
-                    close = {handleNewModalClose}
-                    hostId = {userId}
-                />}
+                {isNewModalOpen &&
+                    <NewGroupMake
+                        className={css.newGroupMake}
+                        isOpen={isNewModalOpen}
+                        close={handleNewModalClose}
+                        hostId={userId}
+                    />}
                 <button className={css.newGoorm} onClick={handleNewModalOpen}>
                     <p className={css.newFloat}>구름 띄우기</p>
                 </button>
@@ -87,7 +108,7 @@ export default function Groups() {
                 ) : (
                     <ul className={css.partyContainer}>
                         {filteredGroups.map((group) => (
-                            <a className={css.groups} key={group.group_id} onClick={() => handleDetailModalOpen(group.group_id)}>
+                            <a className={css.groups} key={group.groupId} onClick={() => handleDetailModalOpen(group.groupId)}>
                                 <Goorm className={css.goorm} value={group} />
                             </a>
                         ))}

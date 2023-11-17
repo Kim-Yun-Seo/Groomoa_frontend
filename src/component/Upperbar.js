@@ -30,41 +30,35 @@ const Upperbar = () => {
     const [userData, setUserData] = useState(null);
     const [token, setToken] = useState(null);
 
-    useEffect(() => {
-        //const apiURL = 'http://13.125.111.84:8081/login';
-        const apiURL = 'https://dummyjson.com/users/Auth'
-        const authToken = localStorage.getItem("key");
-        setToken(authToken);
-        if (!authToken) {
-            movePage('/login');
-        } else {/* providing token in bearer */
-            fetch(apiURL, { 
-                method: 'POST', /* or POST/PUT/PATCH/DELETE */
-                headers: {
-                    'Authorization': `Bearer ${authToken}`,
-                    'Content-Type': 'application/json'
-                },
-            })
-            .then(res => res.json())
-            .then(res=>console.log(res));
-        }
-    },[])
 
     const movePage = useNavigate();
     const homeClick = () => { movePage('/main') }
     const [search, setSearch] = useState('');
-    const [searchResult, setSearchResult] = useState(null);
+    const [searchResult, setSearchResult] = useState([]);
     const [isSearchOpen, setSearchOpen] = useState(false);
 
+    const authToken = localStorage.getItem("key");
     useEffect(() => {
         if (isSearchOpen) {
-            console.log("searched!");
-            fetch(`https://dummyjson.com/users/search?q=${search}`)
-                .then(res => res.json())
-                .then(res => {
-                    (setSearchResult(JSON.stringify(res.users)));
-                    console.log(searchResult);
-                })
+            const fetchData = async () => {
+                try {
+                    const response = await fetch('http://13.125.111.84:8081/users', {
+                        method: "GET",
+                        headers: {
+                            'Authorization': `Bearer ${authToken}`,
+                        },
+                    });
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    const data = await response.json();
+                    setSearchResult(data);
+                    console.log(data);
+                } catch (error) {
+                    console.error('Error fetching data:', error);
+                }
+            }
+            fetchData();
         }
     }, [isSearchOpen, search]);
 
@@ -95,7 +89,7 @@ const Upperbar = () => {
                         searchResult={searchResult}
                     />
                 </div>}
-                <button style={{border:"none", fontSize:"20px"}} onClick={handleChatGo}>GotoChat</button>
+                <button style={{ border: "none", fontSize: "20px" }} onClick={handleChatGo}>GotoChat</button>
             </div>
             <div className={css.notifications}>
                 <div>
@@ -107,7 +101,7 @@ const Upperbar = () => {
                     {<NotiModal isOpen={isNotiOpen} />}
                 </div>
                 <div>
-                    <img src={userImage} className={css.userpage} onClick={()=>movePage('/mypage')} />
+                    <img src={userImage} className={css.userpage} onClick={() => movePage('/mypage')} />
                     {<UserMenuModal isOpen={isUserMenuOpen} />}
                 </div>
 

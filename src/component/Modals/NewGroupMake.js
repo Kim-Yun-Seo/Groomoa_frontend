@@ -17,6 +17,11 @@ const NewGroupMake = ({ isOpen, close, hostId }) => {
     const handleYearChange = (e) => { setSelectedYear(parseInt(e.target.value, 10)); };
     const handleMonthChange = (e) => { setSelectedMonth(parseInt(e.target.value, 10)); };
     const handleDayChange = (e) => { setSelectedDay(parseInt(e.target.value, 10)); };
+    const getFormattedDate = () => {
+        const month = selectedMonth < 10 ? `0${selectedMonth}` : selectedMonth;
+        const day = selectedDay < 10 ? `0${selectedDay}` : selectedDay;
+        return `${selectedYear}-${month}-${day}`;
+    };
 
     const [modalOpen, setOpen] = useState(isOpen);
     const handleClose = () => { setOpen(false); close(); }
@@ -27,8 +32,34 @@ const NewGroupMake = ({ isOpen, close, hostId }) => {
 
     const [title, setTitle] = useState("");
     const [detail, setDetail] = useState("");
+    const [maxParticipants, setMaxParticipants] = useState("");
+
+    const authToken = localStorage.getItem("key");
+    const apiURL = "http://13.125.111.84:8081/group";
+    const body = {
+        "groupTitle" : title,
+        "groupDetail" : detail,
+        "maxParticipants" : maxParticipants,
+        "closeDate" : getFormattedDate(),
+        "category" : selectedCategory
+    }
+    const postGroup = async () => {
+        try {
+            const res = await fetch(apiURL, {
+                method : "POST",
+                headers : {
+                    'Authorization': `Bearer ${authToken}`,
+                    'Content-Type' : 'application/json',
+                },
+                body : body,
+            });
+        } catch(error) {
+            console.error('Error posting data:', error);
+        }
+    }
+
     const handleSubmitClick = () => {
-        // title. detail. date. nowDate, category, member 객체로 만들어서 올리기
+        postGroup();
         setOpen(false);  close();
     }
 
@@ -50,7 +81,10 @@ const NewGroupMake = ({ isOpen, close, hostId }) => {
                 <div>
                     <div className={css.setting}>
                         <p className={css.p_setting}>모집인원</p>
-                        <input className={css.numLimit} placeholder="숫자를 입력하세요 (0~100)"></input>
+                        <input className={css.numLimit} placeholder="숫자를 입력하세요 (0~100)"
+                            value={maxParticipants}
+                            onChange={(e)=> setMaxParticipants(e.target.value)}
+                        ></input>
                     </div>
                     <div className={css.setting}>
                         <p className={css.p_setting_2}>마감기한</p>

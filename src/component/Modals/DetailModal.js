@@ -16,19 +16,30 @@ const DetailModal = ({ isOpen, close, groupId }) => {
         close();
     }
 
-    const groupInfo = {
-        "deadLine": "2023년 11월 20일",
-        "title": "롤 대회 멤버 구합니다!",
-        "detail": "구름대 롤 대회 인원 구합니다! 저는 정글러이고, 최소 플레 이상으로 구하고 있습니다! 많은 관심 부탁드립니다~",
-        "category": "🎮 게임",
-        "part_list": [
-            { "userIndex": 1, "userId": "goorm_Koo", "userName": "구구름", "userIcon": user1 },
-            { "userIndex": 2, "userId": "goorm_Lee", "userName": "이구름", "userIcon": user2 },
-            { "userIndex": 3, "userId": "goorm_Park", "userName": "박구름", "userIcon": user3 },
-            { "userIndex": 4, "userId": "goorm_Kim", "userName": "김구름", "userIcon": user4 },
-            { "userIndex": 5, "userId": "goorm_Kang", "userName": "강구름", "userIcon": user5 }
-        ]
-    }
+    const [ groupInfo, setGroupInfo ] = useState("");
+    const userId = localStorage.getItem("userId");
+    const authToken = localStorage.getItem("key");
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`http://13.125.111.84:8081/group/${groupId}`, {
+                    method: "GET",
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`,
+                    },
+                });
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                setGroupInfo(data);
+                console.log(data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+        fetchData();
+    }, []);
 
     return (
         <div className={css.detailModalPage}>
@@ -37,22 +48,22 @@ const DetailModal = ({ isOpen, close, groupId }) => {
             </div>
             <div className={css.mainData}>
                 <p className={css.detailCategory}>{groupInfo.category}</p>
-                <p className={css.detailDL}>~ {groupInfo.deadLine}</p>
-                <p className={css.detailTitle}>{groupInfo.title}</p>
-                <p className={css.detailDetail}>{groupInfo.detail}</p>
+                <p className={css.detailDL}>~ {groupInfo.closeDate}</p>
+                <p className={css.detailTitle}>{groupInfo.groupTitle}</p>
+                <p className={css.detailDetail}>{groupInfo.groupInfo}</p>
                 <p className={css.partList}>참여 인원 목록</p>
                 <ul className={css.partUList}>
-                    {groupInfo.part_list.map((partList) => (
-                        <div className={css.singlePart} key={partList.userIndex}>
-                            <img className={css.singlePartImg}src={partList.userIcon} />
+                    {groupInfo.participants.map((partList) => (
+                        <div className={css.singlePart} key={partList.userId}>
+                            <img className={css.singlePartImg}src={partList.profileImg} />
                             <div className={css.singlePartInfo}>
-                                <p className={css.singlePartId}>@{partList.userId}</p>
+                                <p className={css.singlePartId}>@{partList.userEmail}</p>
                                 <p className={css.singlePartName}>{partList.userName}</p>
                             </div>
                         </div>
                     ))}
                 </ul>
-
+                <p>hostId랑 userId 비교해서 맞으면 applicants 볼 수 있도록. 누르면 click event</p>
 
             </div>
         </div>
