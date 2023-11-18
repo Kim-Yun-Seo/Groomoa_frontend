@@ -13,7 +13,7 @@ const DetailModal = ({ isOpen, close, groupId }) => {
         movePage(`/chat-room/${thisGroupId}/${myUserEmail}`);
     }
     console.log(thisGroupId);
-    const [isHost, setHost] = useState(false);
+    const [isHost, setHost] = useState(true);
     const [modalOpen, setModalOpen] = useState(isOpen);
     const handleCloseModal = () => { setModalOpen(false); close(); }
     const [groupInfo, setGroupInfo] = useState({
@@ -121,9 +121,7 @@ const DetailModal = ({ isOpen, close, groupId }) => {
     const isAllowed = groupInfo.participants.some(participant => participant.userEmail === myUserEmail);
     const isApplicated = groupInfo.participants.some(applicants => applicants.userEmail === myUserEmail)
     const [isRecruiting, setRecruitiing] = useState(!groupInfo.close);
-    const handleRecruitClick = () => {
-        setRecruitiing(prev => !prev);
-    }
+    const handleRecruitClick = () => { setRecruitiing(prev => !prev); }
 
     return (
         <div className={css.detailModalPage}>
@@ -131,7 +129,7 @@ const DetailModal = ({ isOpen, close, groupId }) => {
                 <button className={css.closeBtn} onClick={handleCloseModal}><img className="closeImg" src={closeImg} /></button>
             </div>
             <div className={css.mainData}>
-                <ul className={css.partUList}>
+                {isHost ? (<ul className={css.partUList}>
                     {groupInfo.applicants.map((partList) => (
                         <div className={css.singlePart} key={partList.userId}>
                             <img className={css.singlePartImg} src={partList.profileImg} />
@@ -141,7 +139,7 @@ const DetailModal = ({ isOpen, close, groupId }) => {
                             </div>
                         </div>
                     ))}
-                </ul>
+                </ul>) : null}
                 <p className={css.detailCategory}>{groupInfo.category}</p>
                 <p className={css.detailDL}>~ {groupInfo.closeDate}</p>
                 <p className={css.detailTitle}>{groupInfo.groupTitle}</p>
@@ -163,7 +161,7 @@ const DetailModal = ({ isOpen, close, groupId }) => {
                     ) : (<div><button className={css.btn} onClick={handleRecruitClick}>마감하기</button></div>)
                 ) : (
                     isAllowed ? (<div><button className={css.btn}>참가 중</button></div>) : (
-                        isApplicated ? (<div><button className={css.btn} >요청됨</button></div>) : (<div><button className={css.btn} >참가하기</button></div>)
+                        isApplicated ? (<div><button className={css.btn}>요청됨</button></div>) : (<div><button className={css.btn} >참가하기</button></div>)
                     )
                 )}
                 {isHost ? (

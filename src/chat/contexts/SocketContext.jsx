@@ -5,7 +5,7 @@ export const SocketContext = createContext();
 
 export const SocketContextProvider = ({children}) => {
     let socket;
-    const CHATSERVER = "https://chattingappexampleserver.run.goorm.site/";
+    const CHATSERVER = "https://goormoa-goormthon-server.run.goorm.site";
     useEffect(()=>{
         socket = io(CHATSERVER);
         return () => {
