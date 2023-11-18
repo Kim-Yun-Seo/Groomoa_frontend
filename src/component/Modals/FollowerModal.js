@@ -2,6 +2,7 @@ import css from "./FollowerModal.module.css";
 import closeImg from "../../images/close.svg";
 import { useState,useEffect } from "react";
 import userImage from "../../images/users/user1.svg";
+import RandomImage from "../RandomPerson";
 
 const FollowerModal = ({ isOpen, close, hostId }) => {
     const [title, setTitle] = useState("");
@@ -76,10 +77,11 @@ const FollowerModal = ({ isOpen, close, hostId }) => {
               {followerList.map((follower) => (
                 <>
                   <div>
-                    <p className={css.category} style={{marginTop: "30px", float: "left"}}><img src={follower.followDetailListDTO.profileImg}></img></p>
+                    {/* <p className={css.category} style={{marginTop: "30px", float: "left"}}><img src={follower.followDetailListDTO.profileImg}></img></p> */}
+                    <RandomImage className={css.category} style={{marginTop: "30px", float: "left"}}/>
                     <p className={css.category} style={{marginLeft: "10px"}}>@{follower.userEmail}</p>
                     <p className={css.category} style={{marginLeft: "10px"}}>{follower.userName}</p>
-                    <button className={css.btn} style={{float: "right"}}>팔로우</button>
+                    <button className={css.btn} style={{float: "right", marginBottom: "30px"}}>팔로우</button>
                   </div>
                   
                 </>

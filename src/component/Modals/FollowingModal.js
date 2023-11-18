@@ -2,6 +2,7 @@ import css from "./Following.module.css";
 import closeImg from "../../images/close.svg";
 import { useState,useEffect } from "react";
 import userImage from "../../images/users/user1.svg";
+import RandomImage from "../RandomPerson";
 
 const FollowingModal = ({ isOpen, close, hostId }) => {
     const [title, setTitle] = useState("");
@@ -76,10 +77,10 @@ const FollowingModal = ({ isOpen, close, hostId }) => {
               {followingList.map((following) => (
                 <>
                   <div>
-                    <p className={css.category} style={{marginTop: "30px", float: "left"}}><img src={following.followDetailListDTO.profileImg}></img></p>
+                  <RandomImage className={css.category} style={{marginTop: "30px", float: "left"}}/>
                     <p className={css.category} style={{marginLeft: "10px"}}>@{following.userEmail}</p>
                     <p className={css.category} style={{marginLeft: "10px"}}>{following.userName}</p>
-                    <button className={css.btn} style={{float: "right"}}>팔로우</button>
+                    <button className={css.btn} style={{float: "right", marginBottom: "30px"}}>팔로우</button>
                   </div>
                   
                 </>
