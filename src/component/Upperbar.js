@@ -69,7 +69,7 @@ const Upperbar = () => {
     const [allUserList, setAllUserList] = useState([]);
     const searchClicked = async () => {
         try {
-            const response = await fetch(`http://13.209.26.40:8081/users`, {
+            const response = await fetch(`http://43.200.164.196:8081/users`, {
                 method: "GET",
                 headers: {
                     'Authorization': `Bearer ${authToken}`,
@@ -140,6 +140,13 @@ const Upperbar = () => {
                 <div>
                     <img src={userImage} className={css.userpage} onClick={() => movePage(`/mypage/my`)} />
                     {<UserMenuModal isOpen={isUserMenuOpen} userId={userId} />}
+                </div>
+
+                <div>
+                    <button onClick={()=>{
+                        localStorage.clear();
+                        movePage('/');
+                    }} style={{border:"2px solid #5604DD", backgroundColor:"#FFFFFF", height:"30px", borderRadius:"3px"}}>로그아웃</button>
                 </div>
             </div>
 

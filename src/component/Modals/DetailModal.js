@@ -98,7 +98,7 @@ const DetailModal = ({isOpen, close, groupId}) => {
         const fetchData = async () => {
             console.log(groupId);
             try {
-                const response = await fetch(`http://13.209.26.40:8081/group/${groupId}`, {
+                const response = await fetch(`http://43.200.164.196:8081/group/${groupId}`, {
                     method: "GET",
                     headers: {
                         'Authorization': `Bearer ${authToken}`,

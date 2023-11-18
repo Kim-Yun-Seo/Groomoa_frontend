@@ -38,7 +38,7 @@ const Mypage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://13.209.26.40:8081/profile', {
+        const response = await fetch('http://43.200.164.196:8081/profile', {
           method: "GET",
           headers: {
             'Authorization': `Bearer ${authToken}`,
@@ -86,7 +86,7 @@ const Mypage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://13.209.26.40:8081/follow/followers', {
+        const response = await fetch('http://43.200.164.196:8081/follow/followers', {
           method: "GET",
           headers: {
             'Authorization': `Bearer ${authToken}`,
@@ -121,9 +121,9 @@ const Mypage = () => {
     }
   }, [])
 
-  const [apiURL, setApiUrl] = useState('http://13.209.26.40:8081/group/myGroups');
+  const [apiURL, setApiUrl] = useState('http://43.200.164.196:8081/group/myGroups');
   if (!isMe) {
-    setApiUrl(`http://13.209.26.40:8081/group/myGroups/${parameter}`);
+    setApiUrl(`http://43.200.164.196:8081/group/myGroups/${parameter}`);
     console.log(apiURL);
   }
   const [groupList, setGroupList] = useState(
@@ -159,7 +159,7 @@ const Mypage = () => {
     if (isMe) {
       console.log("its me")
       try {
-        const response = await fetch('http://13.209.26.40:8081/follow/following', {
+        const response = await fetch('http://43.200.164.196:8081/follow/following', {
           method: "POST",
           headers: {
             'Authorization': `Bearer ${authToken}`,
@@ -177,7 +177,7 @@ const Mypage = () => {
     } else {
       console.log("its not me");
       try {
-        const response = await fetch(`http://13.209.26.40:8081/follow/following/${parameter}`, {
+        const response = await fetch(`http://43.200.164.196:8081/follow/following/${parameter}`, {
           method: "POST",
           headers: {
             'Authorization': `Bearer ${authToken}`,

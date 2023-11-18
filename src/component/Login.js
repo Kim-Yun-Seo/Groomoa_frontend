@@ -36,7 +36,7 @@ const Login = () => {
         localStorage.setItem('key','slslsllslslsdlfj')
         movePage('/main')
         e.preventDefault();
-        const apiURL = 'http://13.209.26.40:8081/login';
+        const apiURL = 'http://43.200.164.196:8081/login';
         const requestbody = {
             userEmail: formData.userEmail,
             userPassword: formData.userPassword,
@@ -108,8 +108,8 @@ const Login = () => {
                     {isWrong && <p className={css.wrong}>이메일 또는 비밀번호를 잘못 입력했습니다.</p>}
                     <div className={css.testInfo}>
                         <p> [ Test User Login Info ] </p>
-                        <p>ID: 'atuny0'</p>
-                        <p>PASSWORD: '9uQFF1Lh'</p>
+                        <p>ID: '@goormoa1'</p>
+                        <p>PASSWORD: '@goormoa'</p>
                     </div>
                 </form>
             </div>
