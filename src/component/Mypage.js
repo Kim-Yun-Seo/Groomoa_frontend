@@ -9,16 +9,19 @@ import { useParams } from "react-router-dom";
 import Goorm from "./Goorm";
 import DetailModal from "./Modals/DetailModal";
 import FollowerModal from "./Modals/FollowerModal";
+import FollowingModal from "./Modals/FollowingModal";
 
 const Mypage = () => {
   const inUrl = useParams();
   const [followerOn, setFollowerOn ] = useState(false)
+  const [followingOn, setFollowingOn ] = useState(false)
   const [ parameter, setParameter] = useState(inUrl.userId);
   console.log(parameter);
 
   const [isModifyOpen, setModifyOpen] = useState(false);
   const handleModifyOpen = () => { setModifyOpen(true) };
   const handleModifyClose = () => { setModifyOpen(false) };
+  const followingOff = () => {setFollowingOn(!followingOn)}
   const followerOff = () => {setFollowerOn(!followerOn)}
 
   const movePage = useNavigate();
@@ -30,15 +33,14 @@ const Mypage = () => {
     profileId: 2,
     profileImg: userImage,
     category: [
-        "GAME",
-        "SOLSCOAL",
-        "dasdasdsdasd"
+        "게임",
+        "프로젝트"
     ]
 });
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://43.200.164.196:8081/profile', {
+        const response = await fetch('http://3.34.179.233/profile', {
           method: "GET",
           headers: {
             'Authorization': `Bearer ${authToken}`,
@@ -106,7 +108,7 @@ const [followers, setFollowers] = useState([
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://43.200.164.196:8081/follow/followers', {
+        const response = await fetch('http://3.34.179.233/follow/followers', {
           method: "GET",
           headers: {
             'Authorization': `Bearer ${authToken}`,
@@ -141,9 +143,9 @@ const [followers, setFollowers] = useState([
     }
   }, [])
 
-  const [apiURL, setApiUrl] = useState('http://43.200.164.196:8081/group/myGroups');
+  const [apiURL, setApiUrl] = useState('http://3.34.179.233/group/myGroups');
   if (!isMe) {
-    setApiUrl(`http://43.200.164.196:8081/group/myGroups/${parameter}`);
+    setApiUrl(`http://3.34.179.233/group/myGroups/${parameter}`);
     console.log(apiURL);
   }
   const [groupList, setGroupList] = useState(
@@ -179,7 +181,7 @@ const [followers, setFollowers] = useState([
     if (isMe) {
       console.log("its me")
       try {
-        const response = await fetch('http://43.200.164.196:8081/follow/following', {
+        const response = await fetch('http://3.34.179.233/follow/following', {
           method: "GET",
           headers: {
             'Authorization': `Bearer ${authToken}`,
@@ -197,7 +199,7 @@ const [followers, setFollowers] = useState([
     } else {
       console.log("its not me");
       try {
-        const response = await fetch(`http://43.200.164.196:8081/follow/following/${parameter}`, {
+        const response = await fetch(`http://3.34.179.233/follow/following/${parameter}`, {
           method: "GET",
           headers: {
             'Authorization': `Bearer ${authToken}`,
@@ -207,7 +209,7 @@ const [followers, setFollowers] = useState([
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        setFollowers(data);
+        setFollowings(data);
         console.log(data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -245,20 +247,26 @@ const [followers, setFollowers] = useState([
                       setFollowerOn(!followerOn);
                       handleFollowClick()
                     }
-                  }>팔로잉<span>{followings.length}</span></p>
+                  }>팔로워<span>{followings.length}</span></p>
                 <p className={css.texts}
                   onClick={
                     () => {
-                      setFollowerOn(!followerOn);
+                      setFollowingOn(!followingOn);
                       handleFollowClick()
                     }
-                  }>팔로워<span>{followers.length}</span></p>
+                  }>팔로잉<span>{followings.length}</span></p>
               </div>
             </div>
             <div style={{ visibility: followerOn ? "visible" : "hidden"}}>
               <FollowerModal
                   className={css.newGroupMake}
                   close={followerOff}
+              />
+            </div>
+            <div style={{ visibility: followingOn ? "visible" : "hidden"}}>
+              <FollowingModal
+                  className={css.newGroupMake}
+                  close={followingOff}
               />
             </div>
             <div>

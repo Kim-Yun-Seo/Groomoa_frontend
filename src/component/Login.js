@@ -36,7 +36,7 @@ const Login = () => {
         localStorage.setItem('key','slslsllslslsdlfj')
         movePage('/main')
         e.preventDefault();
-        const apiURL = 'http://43.200.164.196:8081/login';
+        const apiURL = 'http://3.34.179.233/login';
         const requestbody = {
             userEmail: formData.userEmail,
             userPassword: formData.userPassword,
