@@ -83,11 +83,9 @@ export default function Groups() {
     }, []);
 
     const [isDetailModalOpen, setDetailModalOpen] = useState(false);
-    const [modalById, setModalById] = useState();
+    const [modalById, setModalById] = useState("10");
     const handleDetailModalClose = () => { setDetailModalOpen(false); }
     const handleDetailModalOpen = (groupId) => {
-        console.log(groupId);
-        console.log(modalById);
         setModalById(groupId);
         setDetailModalOpen(true);
     }
@@ -161,7 +159,7 @@ export default function Groups() {
                 <DetailModal
                     isOpen={isDetailModalOpen}
                     close={handleDetailModalClose}
-                    groupInfo={modalById}
+                    groupId={modalById}
                 />
             }
             <div>
