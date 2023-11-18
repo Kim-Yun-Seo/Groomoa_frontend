@@ -86,7 +86,7 @@ const [followers, setFollowers] = useState([
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://13.125.111.84:8081/follow/following', {
+        const response = await fetch('http://3.34.190.41:8081/follow/following', {
           method: "GET",
           headers: {
             'Authorization': `Bearer ${authToken}`,

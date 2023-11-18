@@ -33,7 +33,6 @@ const Login = () => {
     }
 
     const handleLogin = async (e) => {
-        localStorage.setItem('key','slslsllslslsdlfj')
         movePage('/main')
         e.preventDefault();
         const apiURL = 'http://3.34.190.41/login';
