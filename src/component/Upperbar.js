@@ -16,9 +16,6 @@ const Upperbar = () => {
 
     const userId = localStorage.getItem("userId");
     const groupId = "abc";
-    const handleChatGo = () => {
-        movePage(`/chat-room/${groupId}/${userId}`);
-    }
 
     //const userImage = localStorage.getItem("userIcon");
     const [isNotiOpen, setNotiOpen] = useState(false);
@@ -126,7 +123,6 @@ const Upperbar = () => {
                         handleShowButtonClick={handleShowButtonClick}
                     />
                 </div>}
-                <button style={{ border: "none", fontSize: "20px" }} onClick={handleChatGo}>GotoChat</button>
             </div>
             <div className={css.notifications}>
                 <div>

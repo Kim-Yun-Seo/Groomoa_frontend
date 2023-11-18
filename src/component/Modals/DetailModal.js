@@ -3,19 +3,23 @@ import css from './DetailModal.module.css';
 import closeImg from "../../images/close.svg";
 import peoplePurple from "../../images/peoplePurple.svg";
 import peopleWhite from "../../images/peopleWhite.svg";
+import { useNavigate } from 'react-router-dom';
 
-const DetailModal = ({isOpen, close, groupId}) => {
-    localStorage.getItem("userId");
+const DetailModal = ({ isOpen, close, groupId }) => {
+    const movePage = useNavigate();
+    const myUserEmail = localStorage.getItem("userEmail");
+    const handleChatGo = () => {
+        movePage(`/chat-room/${groupId}/${myUserEmail}`);
+    }
     console.log(groupId);
+    const [isHost, setHost] = useState(false);
     const [modalOpen, setModalOpen] = useState(isOpen);
     const handleCloseModal = () => { setModalOpen(false); close(); }
-    const [ groupInfo, setGroupInfo ] = useState({
+    const [groupInfo, setGroupInfo] = useState({
         "groupId": 1,
-        "host": {
-            "userId": 11,
-            "userEmail": "11",
-            "userName": "김정목"
-        },
+        "userId": 11,
+        "userEmail": "11",
+        "userName": "김정목",
         "closeDate": null,
         "groupTitle": "모임1",
         "groupInfo": "모임 설명",
@@ -90,7 +94,6 @@ const DetailModal = ({isOpen, close, groupId}) => {
         "currentCount": 1,
         "close": false
     });
-    const userId = localStorage.getItem("userId");
     const authToken = localStorage.getItem("key");
     useEffect(() => {
         const fetchData = async () => {
@@ -114,11 +117,9 @@ const DetailModal = ({isOpen, close, groupId}) => {
         }
         fetchData();
     }, []);
-    const [ isHost, setHost ] = useState(false);
-    const isAllowed = groupInfo.participants.some(participant => participant.userId === parseInt(userId, 10));
-    const isApplicated = groupInfo.participants.some(applicants => applicants.userId === parseInt(userId, 10))
+    const isAllowed = groupInfo.participants.some(participant => participant.userEmail === myUserEmail);
+    const isApplicated = groupInfo.participants.some(applicants => applicants.userEmail === myUserEmail)
     const isRecruiting = !groupInfo.close;
-  
 
     return (
         <div className={css.detailModalPage}>
@@ -134,7 +135,7 @@ const DetailModal = ({isOpen, close, groupId}) => {
                 <ul className={css.partUList}>
                     {groupInfo.participants.map((partList) => (
                         <div className={css.singlePart} key={partList.userId}>
-                            <img className={css.singlePartImg}src={partList.profileImg} />
+                            <img className={css.singlePartImg} src={partList.profileImg} />
                             <div className={css.singlePartInfo}>
                                 <p className={css.singlePartId}>@{partList.userEmail}</p>
                                 <p className={css.singlePartName}>{partList.userName}</p>
@@ -143,12 +144,16 @@ const DetailModal = ({isOpen, close, groupId}) => {
                     ))}
                 </ul>
                 {isHost ? (
-                    isRecruiting ? (<div>모집하기</div>) : (<div>마감하기</div>)
+                    isRecruiting ? (<div><button>모집하기</button></div>) : (<div><button>마감하기</button></div>)
                 ) : (
-                    isAllowed ? (<div><p>참가 중</p></div>) : (
-                        isApplicated ? (<div><p>요청됨</p></div>) : (<div>참가하기</div>)
+                    isAllowed ? (<div><button>참가 중</button></div>) : (
+                        isApplicated ? (<div><button>요청됨</button></div>) : (<div><button>참가하기</button></div>)
                     )
                 )}
+                {isHost ? (
+                    <div><button onClick={handleChatGo}>채팅방 참여하기</button></div>
+                ) : (
+                    isAllowed ? (<div><button onClick={handleChatGo}>채팅방 참여하기</button></div>) : (<div><button onClick={handleChatGo}>채팅방 참여하기</button></div>))}
             </div>
         </div>
     )

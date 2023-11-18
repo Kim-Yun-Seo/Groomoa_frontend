@@ -8,10 +8,10 @@ import Groups from "./Groups";
 import MakeGoorm from "./MakeGoorm";
 
 const Mainpage = () => {
-  const [userId, setUserId] = useState("default");
+  const [userEmail, setUserEmail] = useState("default");
   const movePage = useNavigate();
   //이거 지워야함
-  localStorage.setItem("userId", userId);
+  localStorage.setItem("userEmail", userEmail);
   const authToken = localStorage.getItem("key");
 
   useEffect(() => {
@@ -29,8 +29,8 @@ const Mainpage = () => {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        setUserId(data.userInfo.userEmail);
-        localStorage.setItem("userId", userId);
+        setUserEmail(data.userInfo.userEmail);
+        localStorage.setItem("userEmail", userEmail);
         console.log(data);
       } catch (error) {
         console.error('Error fetching data:', error);
