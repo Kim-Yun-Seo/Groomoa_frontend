@@ -132,7 +132,7 @@ const DetailModal = ({ isOpen, close, groupId }) => {
             </div>
             <div className={css.mainData}>
                 <ul className={css.partUList}>
-                    {groupInfo.participants.map((partList) => (
+                    {groupInfo.applicants.map((partList) => (
                         <div className={css.singlePart} key={partList.userId}>
                             <img className={css.singlePartImg} src={partList.profileImg} />
                             <div className={css.singlePartInfo}>
