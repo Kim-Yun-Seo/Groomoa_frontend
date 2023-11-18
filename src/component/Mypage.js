@@ -8,9 +8,12 @@ import ModifyProfile from "./Modals/ModifyProfile";
 import { useParams } from "react-router-dom";
 import Goorm from "./Goorm";
 import DetailModal from "./Modals/DetailModal";
+import FollowerModal from "./Modals/FollowerModal";
+
 
 const Mypage = () => {
   const inUrl = useParams();
+  const [followerOn, setFollowerOn ] = useState(false)
   const [ parameter, setParameter] = useState(inUrl.userId);
   console.log(parameter);
 
@@ -218,11 +221,17 @@ const Mypage = () => {
               <div className={css.follow}>
                 <p className={css.texts}
                   onClick={
-                    () => { console.log('팔로잉 목록 =',) }
+                    // () => { console.log('팔로잉 목록 =',) }
+                    <FollowerModal
+                    isOpen={true}
+                    close={false}
+                    userId={userId}/>
                   }>팔로잉<span>{followings.length}</span></p>
                 <p className={css.texts}
                   onClick={
-                    () => { console.log('팔로우 목록 =',) }
+                    () => {
+                      setFollowerOn(!followerOn)
+                    }
                   }>팔로워<span>{followers.length}</span></p>
               </div>
             </div>
