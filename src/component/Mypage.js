@@ -7,7 +7,6 @@ import userImage from "../images/users/user1.svg";
 import ModifyProfile from "./Modals/ModifyProfile";
 import { useParams } from "react-router-dom";
 import Goorm from "./Goorm";
-import FollowerModal from "./Modals/FollowerModal";
 import DetailModal from "./Modals/DetailModal";
 
 const Mypage = () => {
@@ -18,22 +17,21 @@ const Mypage = () => {
   const [isModifyOpen, setModifyOpen] = useState(false);
   const handleModifyOpen = () => { setModifyOpen(true) };
   const handleModifyClose = () => { setModifyOpen(false) };
-  const [followerOn, setfollowerOn] = useState(false);
 
   const movePage = useNavigate();
   const authToken = localStorage.getItem("key");
   const [profile, setProfile] = useState({
-    "profileId": 10,
-    "userInfo": {
-      "userId": 11,
-      "userEmail": "11",
-      "userName": "김정목"
-    },
-    "profileInfo": {
-      "profileImg": "https://www.mangoboard.net/images/character_10.png",
-      "interestings": null
-    }
-  });
+    "userId": 2,
+    "userEmail": "goormoa2",
+    "userName": "구르모아2",
+    "profileId": 2,
+    "profileImg": "수정용이미지2",
+    "category": [
+        "GAME",
+        "SOLSCOAL",
+        "dasdasdsdasd"
+    ]
+});
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -115,7 +113,7 @@ const Mypage = () => {
 
   const [isMe, setIsMe] = useState(true);
   useEffect(() => {
-    if (userId === profile.userInfo.userId) {
+    if (userId === profile.userId) {
       setIsMe(true);
     }
   }, [])
@@ -224,22 +222,9 @@ const Mypage = () => {
                   }>팔로잉<span>{followings.length}</span></p>
                 <p className={css.texts}
                   onClick={
-                    () => {
-                      setfollowerOn(!followerOn)
-                      console.log('followerOn =', followerOn)
-                    }
+                    () => { console.log('팔로우 목록 =',) }
                   }>팔로워<span>{followers.length}</span></p>
               </div>
-            </div>
-            <div style={{ visibility: followerOn ? "visible" : "hidden"}}>
-              <FollowerModal
-                  className={css.newGroupMake}
-                  isOpen={true}
-                  close={() => {
-                    console.log('slslsl =' , )
-                  }}
-                  hostId={userId}
-              />
             </div>
             <div>
               {isMe ? null : <button className={css.followBtn}
@@ -258,7 +243,7 @@ const Mypage = () => {
           <div className={css.interest}>
             <p className={css.interestTitle}>관심사</p>
             <div className={css.interestCategory}>
-              {!profile.interestings ? <p>no interest</p> : profile.interestings.map((interests) => (
+              {!profile.category ? <p>no interest</p> : profile.category.map((interests) => (
                 <p className={css.category} key={interests.categoryId}>{interests.category}</p>
               ))}
             </div>
@@ -269,6 +254,7 @@ const Mypage = () => {
             isOpen={isDetailModalOpen}
             close={handleDetailModalClose}
             groupId={modalById}
+
           />
         }
         <div className={css.groupData}>

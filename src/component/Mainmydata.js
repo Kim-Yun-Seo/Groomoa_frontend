@@ -7,18 +7,17 @@ const Mainmydata = () => {
 
     const authToken = localStorage.getItem("key");
 
-    const [profile, setProfile] = useState({
-        "profileId": 10,
-        "userInfo": {
-            "userId": 11,
-            "userEmail": "11",
-            "userName": "김정목"
-        },
-        "profileInfo": {
-            "profileImg": "/star.jpg",
-            "interestings": null
+    const [profile, setProfile] = useState([
+        {
+            "userId": 2,
+            "userEmail": "goormoa2",
+            "userName": "구르모아2",
+            "followDetailListDTO": {
+                "profileId": 2,
+                "profileImg": "수정용이미지2"
+            }
         }
-    });
+    ]);
     const url = "http://13.209.26.40:8081/profile/";
     useEffect(() => {
         const fetchData = async () => {
@@ -178,10 +177,10 @@ const Mainmydata = () => {
     return (
         <div className={css.dataList}>
             <div className={css.profile}>
-                <img className={css.userIcon} src={profile.profileInfo.profileImg}></img>
+                
                 <div className={css.textData}>
-                    <p className={css.id}>@{profile.userInfo.userEmail}</p>
-                    <p className={css.name}>{profile.userInfo.userName}</p>
+                    <p className={css.id}>@{profile.userEmail}</p>
+                    <p className={css.name}>{profile.userName}</p>
                 </div>
             </div>
             <div className={css.follow}>
