@@ -24,7 +24,7 @@ const ModifyProfile = ({ isOpen, close }) => {
         }
     });
     const authToken = localStorage.getItem("key");
-    const apiURL = "http://3.34.179.233/profile";
+    const apiURL = "http://3.34.190.41/profile";
     const body = {
         "profileId": 3,
         "userInfo": {

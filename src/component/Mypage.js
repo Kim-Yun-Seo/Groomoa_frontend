@@ -40,7 +40,7 @@ const Mypage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://3.34.179.233/profile', {
+        const response = await fetch('http://3.34.190.41/profile', {
           method: "GET",
           headers: {
             'Authorization': `Bearer ${authToken}`,
@@ -108,7 +108,7 @@ const [followers, setFollowers] = useState([
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://3.34.179.233/follow/followers', {
+        const response = await fetch('http://3.34.190.41/follow/followers', {
           method: "GET",
           headers: {
             'Authorization': `Bearer ${authToken}`,
@@ -143,9 +143,9 @@ const [followers, setFollowers] = useState([
     }
   }, [])
 
-  const [apiURL, setApiUrl] = useState('http://3.34.179.233/group/myGroups');
+  const [apiURL, setApiUrl] = useState('http://3.34.190.41/group/myGroups');
   if (!isMe) {
-    setApiUrl(`http://3.34.179.233/group/myGroups/${parameter}`);
+    setApiUrl(`http://3.34.190.41/group/myGroups/${parameter}`);
     console.log(apiURL);
   }
   const [groupList, setGroupList] = useState(
@@ -181,7 +181,7 @@ const [followers, setFollowers] = useState([
     if (isMe) {
       console.log("its me")
       try {
-        const response = await fetch('http://3.34.179.233/follow/following', {
+        const response = await fetch('http://3.34.190.41/follow/following', {
           method: "GET",
           headers: {
             'Authorization': `Bearer ${authToken}`,
@@ -199,7 +199,7 @@ const [followers, setFollowers] = useState([
     } else {
       console.log("its not me");
       try {
-        const response = await fetch(`http://3.34.179.233/follow/following/${parameter}`, {
+        const response = await fetch(`http://3.34.190.41/follow/following/${parameter}`, {
           method: "GET",
           headers: {
             'Authorization': `Bearer ${authToken}`,

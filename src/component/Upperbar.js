@@ -66,7 +66,7 @@ const Upperbar = () => {
     const [allUserList, setAllUserList] = useState([]);
     const searchClicked = async () => {
         try {
-            const response = await fetch(`http://3.34.179.233/users`, {
+            const response = await fetch(`http://3.34.190.41/users`, {
                 method: "GET",
                 headers: {
                     'Authorization': `Bearer ${authToken}`,

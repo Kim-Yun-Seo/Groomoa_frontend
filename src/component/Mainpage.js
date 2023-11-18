@@ -19,7 +19,7 @@ const Mainpage = () => {
     {movePage('/')}
     const fetchData = async () => {
       try {
-        const response = await fetch('http://3.34.179.233/profile', {
+        const response = await fetch('http://3.34.190.41/profile', {
           method: "GET",
           headers: {
             'Authorization': `Bearer ${authToken}`,

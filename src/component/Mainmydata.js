@@ -18,7 +18,7 @@ const Mainmydata = () => {
             }
         }
     ]);
-    const url = "http://3.34.179.233/profile/";
+    const url = "http://3.34.190.41/profile/";
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -62,7 +62,7 @@ const Mainmydata = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://3.34.179.233/follow/following', {
+                const response = await fetch('http://3.34.190.41/follow/following', {
                     method: "GET",
                     headers: {
                         'Authorization': `Bearer ${authToken}`,
@@ -103,7 +103,7 @@ const Mainmydata = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://3.34.179.233/follow/followers', {
+                const response = await fetch('http://3.34.190.41/follow/followers', {
                     method: "GET",
                     headers: {
                         'Authorization': `Bearer ${authToken}`,
@@ -151,7 +151,7 @@ const Mainmydata = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://3.34.179.233/recommend', {
+                const response = await fetch('http://3.34.190.41/recommend', {
                     method: "GET",
                     headers: {
                         'Authorization': `Bearer ${authToken}`,

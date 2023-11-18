@@ -8,7 +8,7 @@ const FollowingModal = ({ isOpen, close, hostId }) => {
     const [detail, setDetail] = useState("");
     const [maxParticipants, setMaxParticipants] = useState("");
     const authToken = localStorage.getItem("key");
-    const apiURL = "http://3.34.179.233/group";
+    const apiURL = "http://3.34.190.41/group";
     const [modalOpen, setOpen] = useState(isOpen);
     const handleClose = () => { setOpen(false); close(); }
     const handleSubmitClick = () => {
@@ -47,7 +47,7 @@ const FollowingModal = ({ isOpen, close, hostId }) => {
       const fetchData = async () => {
           try {
               //url 일부러 조져놓음 더미데이터 만들어지면 다시 연결하기
-              const response = await fetch('http://3.34.179.233/follow/followering', {
+              const response = await fetch('http://3.34.190.41/follow/followering', {
                   method: "GET",
                   headers: {
                       'Authorization': `Bearer ${authToken}`,
