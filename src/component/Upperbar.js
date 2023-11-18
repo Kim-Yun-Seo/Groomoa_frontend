@@ -130,11 +130,13 @@ const Upperbar = () => {
             </div>
             <div className={css.notifications}>
                 <div>
-                    <img src={goormMsg} className={css.message} onClick={msgModalOpen} />
+                {/* onClick={msgModalOpen}  */}
+                    <img src={goormMsg} className={css.message}/>
                     {<MsgModal isOpen={isMsgOpen} />}
                 </div>
                 <div>
-                    <img src={alarmImage} className={css.alarm} onClick={alarmModalOpen} />
+                {/* onClick={alarmModalOpen}  */}
+                    <img src={alarmImage} className={css.alarm}/>
                     {<NotiModal isOpen={isNotiOpen} />}
                 </div>
                 <div>
@@ -143,10 +145,11 @@ const Upperbar = () => {
                 </div>
 
                 <div>
-                    <button onClick={()=>{
+                    <button className={css.logoutBtn}
+                        onClick={()=>{
                         localStorage.clear();
                         movePage('/');
-                    }} style={{border:"2px solid #5604DD", backgroundColor:"#FFFFFF", height:"30px", borderRadius:"3px"}}>로그아웃</button>
+                    }}>로그아웃</button>
                 </div>
             </div>
 

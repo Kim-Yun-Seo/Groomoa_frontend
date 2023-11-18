@@ -3,25 +3,28 @@ import closeImg from "../../images/close.svg";
 import { useState,useEffect } from "react";
 
 const FollowerModal = ({ isOpen, close, hostId }) => {
-
-
     const [title, setTitle] = useState("");
     const [detail, setDetail] = useState("");
     const [maxParticipants, setMaxParticipants] = useState("");
     const authToken = localStorage.getItem("key");
     const apiURL = "http://43.200.164.196:8081/group";
+    const [modalOpen, setOpen] = useState(isOpen);
+    const handleClose = () => { setOpen(false); close(); }
+    const handleSubmitClick = () => {
+      setOpen(false);  close();
+  }
     const [followerList, setFollowerList] = useState(
       [
         {
-            userId: 2,
-            userEmail: "",
-            userName: "",
-            followDetailListDTO: {
-                profileId: 2,
-                profileImg: "img"
+            "userId": 2,
+            "userEmail": "goormoa2",
+            "userName": "구르모아2",
+            "followDetailListDTO": {
+                "profileId": 2,
+                "profileImg": "수정용이미지2"
             }
         }
-    ]
+      ]
     );
     const body = {
         "groupTitle": title,
@@ -58,7 +61,7 @@ const FollowerModal = ({ isOpen, close, hostId }) => {
     return (
         <div className={css.newModalPage}>
             <div className={css.closeDiv}>
-                <button className={css.closeBtn}><img className={css.closeImg} src={closeImg} /></button>
+                <button className={css.closeBtn} onClick={handleClose}><img className={css.closeImg} src={closeImg} /></button>
             </div>
             <div>
               {followerList.map((follower) => (

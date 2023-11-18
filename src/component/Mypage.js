@@ -19,16 +19,17 @@ const Mypage = () => {
   const [isModifyOpen, setModifyOpen] = useState(false);
   const handleModifyOpen = () => { setModifyOpen(true) };
   const handleModifyClose = () => { setModifyOpen(false) };
+  const followerOff = () => {setFollowerOn(!followerOn)}
 
   const movePage = useNavigate();
   const authToken = localStorage.getItem("key");
   const [profile, setProfile] = useState({
-    "userId": 2,
-    "userEmail": "goormoa2",
-    "userName": "구르모아2",
-    "profileId": 2,
-    "profileImg": "수정용이미지2",
-    "category": [
+    userId: 2,
+    userEmail: "goormoa222",
+    userName: "구르모아222",
+    profileId: 2,
+    profileImg: userImage,
+    category: [
         "GAME",
         "SOLSCOAL",
         "dasdasdsdasd"
@@ -58,7 +59,28 @@ const Mypage = () => {
   }, []);
 
 
-  const [followings, setFollowings] = useState([]);
+  const [followings, setFollowings] = useState([
+    {
+        "userId": 2,
+        "userEmail": "goormoa2",
+        "userName": "구르모아2",
+        "followDetailListDTO": {
+            "profileId": 2,
+            "profileImg": "수정용이미지2"
+        }
+    }
+]);
+const [followers, setFollowers] = useState([
+  {
+    "userId": 2,
+    "userEmail": "goormoa2",
+    "userName": "구르모아2",
+    "followDetailListDTO": {
+        "profileId": 2,
+        "profileImg": "수정용이미지2"
+    }
+}
+]);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -81,7 +103,6 @@ const Mypage = () => {
     fetchData();
   }, [])
 
-  const [followers, setFollowers] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -159,7 +180,7 @@ const Mypage = () => {
       console.log("its me")
       try {
         const response = await fetch('http://43.200.164.196:8081/follow/following', {
-          method: "POST",
+          method: "GET",
           headers: {
             'Authorization': `Bearer ${authToken}`,
           },
@@ -177,7 +198,7 @@ const Mypage = () => {
       console.log("its not me");
       try {
         const response = await fetch(`http://43.200.164.196:8081/follow/following/${parameter}`, {
-          method: "POST",
+          method: "GET",
           headers: {
             'Authorization': `Bearer ${authToken}`,
           },
@@ -186,7 +207,7 @@ const Mypage = () => {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        setFollowings(data);
+        setFollowers(data);
         console.log(data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -220,16 +241,16 @@ const Mypage = () => {
               <div className={css.follow}>
                 <p className={css.texts}
                   onClick={
-                    // () => { console.log('팔로잉 목록 =',) }
-                    <FollowerModal
-                    isOpen={true}
-                    close={false}
-                    userId={userId}/>
+                    () => {
+                      setFollowerOn(!followerOn);
+                      handleFollowClick()
+                    }
                   }>팔로잉<span>{followings.length}</span></p>
                 <p className={css.texts}
                   onClick={
                     () => {
-                      setFollowerOn(!followerOn)
+                      setFollowerOn(!followerOn);
+                      handleFollowClick()
                     }
                   }>팔로워<span>{followers.length}</span></p>
               </div>
@@ -237,11 +258,7 @@ const Mypage = () => {
             <div style={{ visibility: followerOn ? "visible" : "hidden"}}>
               <FollowerModal
                   className={css.newGroupMake}
-                  isOpen={true}
-                  close={() => {
-                    console.log('slslsl =' , )
-                  }}
-                  hostId={userId}
+                  close={followerOff}
               />
             </div>
             <div>
@@ -261,8 +278,8 @@ const Mypage = () => {
           <div className={css.interest}>
             <p className={css.interestTitle}>관심사</p>
             <div className={css.interestCategory}>
-              {!profile.category ? <p>no interest</p> : profile.category.map((interests) => (
-                <p className={css.category} key={interests.categoryId}>{interests.category}</p>
+              {profile.category.map((interest) => (
+                <p className={css.category} key={interest}>{interest}</p>
               ))}
             </div>
           </div>
