@@ -226,6 +226,16 @@ const Mypage = () => {
                   }>팔로워<span>{followers.length}</span></p>
               </div>
             </div>
+            <div style={{ visibility: followerOn ? "visible" : "hidden"}}>
+              <FollowerModal
+                  className={css.newGroupMake}
+                  isOpen={true}
+                  close={() => {
+                    console.log('slslsl =' , )
+                  }}
+                  hostId={userId}
+              />
+            </div>
             <div>
               {isMe ? null : <button className={css.followBtn}
                 onClick={handleFollowClick}>팔로우</button>}

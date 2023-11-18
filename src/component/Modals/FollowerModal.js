@@ -13,15 +13,15 @@ const FollowerModal = ({ isOpen, close, hostId }) => {
     const [followerList, setFollowerList] = useState(
       [
         {
-          userId: 1,
-          userEmail: "",
-          userName: "",
-          profileFollowListDTO: {
-              profileId: 1,
-              profileImg: null
-          }
+            userId: 2,
+            userEmail: "",
+            userName: "",
+            followDetailListDTO: {
+                profileId: 2,
+                profileImg: "img"
+            }
         }
-      ]
+    ]
     );
     const body = {
         "groupTitle": title,
@@ -35,7 +35,7 @@ const FollowerModal = ({ isOpen, close, hostId }) => {
       const fetchData = async () => {
           try {
               //url 일부러 조져놓음 더미데이터 만들어지면 다시 연결하기
-              const response = await fetch('http://13.209.26.40:8081//follow/followers/ ', {
+              const response = await fetch('http://13.209.26.40:8081//follow/followers', {
                   method: "GET",
                   headers: {
                       'Authorization': `Bearer ${authToken}`,
@@ -46,8 +46,9 @@ const FollowerModal = ({ isOpen, close, hostId }) => {
               }
               const data = await response.json();
               setFollowerList(data);
-              console.log(data);
+              console.log('setFollowerList= ',data);
           } catch (error) {
+              console.log('kkk =' , )
               console.error('Error fetching data:', error);
           }
       }
@@ -61,7 +62,10 @@ const FollowerModal = ({ isOpen, close, hostId }) => {
             </div>
             <div>
               {followerList.map((follower) => (
-                <p className={css.category}>{follower.userEmail}</p>
+                <>
+                <p className={css.category}>@{follower.userEmail}</p>
+                <p className={css.category}>@{follower.userName}</p>
+                </>
               ))}
             </div>
         </div>
