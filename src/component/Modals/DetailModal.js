@@ -6,12 +6,13 @@ import peopleWhite from "../../images/peopleWhite.svg";
 import { useNavigate } from 'react-router-dom';
 
 const DetailModal = ({ isOpen, close, groupId }) => {
+    const thisGroupId = groupId;
     const movePage = useNavigate();
     const myUserEmail = localStorage.getItem("userEmail");
     const handleChatGo = () => {
-        movePage(`/chat-room/${groupId}/${myUserEmail}`);
+        movePage(`/chat-room/${thisGroupId}/${myUserEmail}`);
     }
-    console.log(groupId);
+    console.log(thisGroupId);
     const [isHost, setHost] = useState(false);
     const [modalOpen, setModalOpen] = useState(isOpen);
     const handleCloseModal = () => { setModalOpen(false); close(); }
@@ -97,9 +98,9 @@ const DetailModal = ({ isOpen, close, groupId }) => {
     const authToken = localStorage.getItem("key");
     useEffect(() => {
         const fetchData = async () => {
-            console.log(groupId);
+            console.log(thisGroupId);
             try {
-                const response = await fetch(`http://43.200.164.196:8081/group/${groupId}`, {
+                const response = await fetch(`http://43.200.164.196:8081/group/${thisGroupId}`, {
                     method: "GET",
                     headers: {
                         'Authorization': `Bearer ${authToken}`,

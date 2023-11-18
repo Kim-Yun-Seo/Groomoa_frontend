@@ -8,7 +8,7 @@ import Groups from "./Groups";
 import MakeGoorm from "./MakeGoorm";
 
 const Mainpage = () => {
-  const [userEmail, setUserEmail] = useState("default");
+  const [userEmail, setUserEmail] = useState("goormoa");
   const movePage = useNavigate();
   //이거 지워야함
   localStorage.setItem("userEmail", userEmail);

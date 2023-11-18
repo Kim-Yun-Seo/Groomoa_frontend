@@ -83,9 +83,11 @@ export default function Groups() {
     }, []);
 
     const [isDetailModalOpen, setDetailModalOpen] = useState(false);
-    const [modalById, setModalById] = useState("");
+    const [modalById, setModalById] = useState();
     const handleDetailModalClose = () => { setDetailModalOpen(false); }
     const handleDetailModalOpen = (groupId) => {
+        console.log(groupId);
+        console.log(modalById);
         setModalById(groupId);
         setDetailModalOpen(true);
     }
@@ -189,7 +191,7 @@ export default function Groups() {
                 ) : (
                     <ul className={css.partyContainer}>
                         {filteredGroups.map((group) => (
-                            <a className={css.groups} key={group.groupId} onClick={() => handleDetailModalOpen(group.groupId)}>
+                            <a className={css.groups} key={group.groupId} onClick={() => {handleDetailModalOpen(group.groupId); console.log(group.groupId)}}>
                                 <Goorm className={css.goorm} value={group} />
                             </a>
                         ))}
