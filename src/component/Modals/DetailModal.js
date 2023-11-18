@@ -4,6 +4,7 @@ import closeImg from "../../images/close.svg";
 import peoplePurple from "../../images/peoplePurple.svg";
 import peopleWhite from "../../images/peopleWhite.svg";
 import { useNavigate } from 'react-router-dom';
+import RandomImage from "../RandomPerson";
 
 const DetailModal = ({ isOpen, close, groupId }) => {
     const thisGroupId = groupId;
@@ -183,7 +184,8 @@ const DetailModal = ({ isOpen, close, groupId }) => {
                 {isHost ? (<ul className={css.partUList}>
                     {groupInfo.applicants.map((partList) => (
                         <div className={css.singlePart} key={partList.userId}>
-                            <img className={css.singlePartImg} src={partList.profileImg} />
+                            {/* <img className={css.singlePartImg} src={partList.profileImg} /> */}
+                            <RandomImage className={css.singlePartImg}/>
                             <div className={css.singlePartInfo}>
                                 <p className={css.singlePartId}>@{partList.userEmail}</p>
                                 <p className={css.singlePartName}>{partList.userName}</p>
@@ -204,7 +206,7 @@ const DetailModal = ({ isOpen, close, groupId }) => {
                 <ul className={css.partUList}>
                     {groupInfo.participants.map((partList) => (
                         <div className={css.singlePart} key={partList.userId}>
-                            <img className={css.singlePartImg} src={partList.profileImg} />
+                            <RandomImage className={css.singlePartImg}/>
                             <div className={css.singlePartInfo}>
                                 <p className={css.singlePartId}>@{partList.userEmail}</p>
                                 <p className={css.singlePartName}>{partList.userName}</p>

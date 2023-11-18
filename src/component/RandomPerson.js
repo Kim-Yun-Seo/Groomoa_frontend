@@ -3,9 +3,10 @@ import user1 from '../images/users/user1.svg'
 import user2 from '../images/users/user2.svg'
 import user3 from '../images/users/user3.svg'
 import user4 from '../images/users/user4.svg'
-import user5 from '../images/users/user4.svg'
+import user5 from '../images/users/user5.svg'
+import user6 from '../images/users/user6.svg'
 
-const images = [user1, user2, user3, user4, user5];
+const images = [user1, user2, user3, user4, user5, user6];
 
 const RandomImage = () => {
   const [randomImage, setRandomImage] = useState(null);
