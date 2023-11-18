@@ -154,7 +154,7 @@ const DetailModal = ({ isOpen, close, groupId }) => {
                 {isHost ? (
                     <div><button onClick={handleChatGo}>채팅방 참여하기</button></div>
                 ) : (
-                    isAllowed ? (<div><button onClick={handleChatGo}>채팅방 참여하기</button></div>) : (<div><button onClick={handleChatGo}>채팅방 참여하기</button></div>))}
+                    isAllowed ? (<div><button onClick={handleChatGo}>채팅방 참여하기</button></div>) : null)}
             </div>
         </div>
     )
