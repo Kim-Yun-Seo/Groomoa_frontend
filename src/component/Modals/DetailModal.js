@@ -120,7 +120,10 @@ const DetailModal = ({ isOpen, close, groupId }) => {
     }, []);
     const isAllowed = groupInfo.participants.some(participant => participant.userEmail === myUserEmail);
     const isApplicated = groupInfo.participants.some(applicants => applicants.userEmail === myUserEmail)
-    const isRecruiting = !groupInfo.close;
+    const [isRecruiting, setRecruitiing] = useState(!groupInfo.close);
+    const handleRecruitClick = () => {
+        setRecruitiing(prev => !prev);
+    }
 
     return (
         <div className={css.detailModalPage}>
@@ -128,6 +131,17 @@ const DetailModal = ({ isOpen, close, groupId }) => {
                 <button className={css.closeBtn} onClick={handleCloseModal}><img className="closeImg" src={closeImg} /></button>
             </div>
             <div className={css.mainData}>
+                <ul className={css.partUList}>
+                    {groupInfo.participants.map((partList) => (
+                        <div className={css.singlePart} key={partList.userId}>
+                            <img className={css.singlePartImg} src={partList.profileImg} />
+                            <div className={css.singlePartInfo}>
+                                <p className={css.singlePartId}>@{partList.userEmail}</p>
+                                <p className={css.singlePartName}>{partList.userName}</p>
+                            </div>
+                        </div>
+                    ))}
+                </ul>
                 <p className={css.detailCategory}>{groupInfo.category}</p>
                 <p className={css.detailDL}>~ {groupInfo.closeDate}</p>
                 <p className={css.detailTitle}>{groupInfo.groupTitle}</p>
@@ -145,9 +159,10 @@ const DetailModal = ({ isOpen, close, groupId }) => {
                     ))}
                 </ul>
                 {isHost ? (
-                    isRecruiting ? (<div><button className={css.btn} >모집하기</button></div>) : (<div><button className={css.btn} >마감하기</button></div>)
+                    isRecruiting ? (<div><button className={css.btn} onClick={handleRecruitClick}>모집하기</button></div>
+                    ) : (<div><button className={css.btn} onClick={handleRecruitClick}>마감하기</button></div>)
                 ) : (
-                    isAllowed ? (<div><button className={css.btn} >참가 중</button></div>) : (
+                    isAllowed ? (<div><button className={css.btn}>참가 중</button></div>) : (
                         isApplicated ? (<div><button className={css.btn} >요청됨</button></div>) : (<div><button className={css.btn} >참가하기</button></div>)
                     )
                 )}
