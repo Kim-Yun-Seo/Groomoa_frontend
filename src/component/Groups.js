@@ -63,7 +63,7 @@ export default function Groups() {
         const fetchData = async () => {
             try {
                 //url 일부러 조져놓음 더미데이터 만들어지면 다시 연결하기
-                const response = await fetch('http://43.200.164.196:8081/group', {
+                const response = await fetch('http://3.34.179.233/group', {
                     method: "GET",
                     headers: {
                         'Authorization': `Bearer ${authToken}`,
