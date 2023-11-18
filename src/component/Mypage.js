@@ -40,7 +40,7 @@ const Mypage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://3.34.190.41/profile', {
+        const response = await fetch('https://goormoagit-afdgu.run.goorm.site/profile', {
           method: "GET",
           headers: {
             'Authorization': `Bearer ${authToken}`,
@@ -86,7 +86,7 @@ const [followers, setFollowers] = useState([
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://3.34.190.41:8081/follow/following', {
+        const response = await fetch('https://goormoagit-afdgu.run.goorm.site/follow/following', {
           method: "GET",
           headers: {
             'Authorization': `Bearer ${authToken}`,
@@ -108,7 +108,7 @@ const [followers, setFollowers] = useState([
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://3.34.190.41/follow/followers', {
+        const response = await fetch('https://goormoagit-afdgu.run.goorm.site/follow/followers', {
           method: "GET",
           headers: {
             'Authorization': `Bearer ${authToken}`,
@@ -143,9 +143,9 @@ const [followers, setFollowers] = useState([
     }
   }, [])
 
-  const [apiURL, setApiUrl] = useState('http://3.34.190.41/group/myGroups');
+  const [apiURL, setApiUrl] = useState('https://goormoagit-afdgu.run.goorm.site/group/myGroups');
   if (!isMe) {
-    setApiUrl(`http://3.34.190.41/group/myGroups/${parameter}`);
+    setApiUrl(`https://goormoagit-afdgu.run.goorm.site/group/myGroups/${parameter}`);
     console.log(apiURL);
   }
   const [groupList, setGroupList] = useState(
@@ -181,7 +181,7 @@ const [followers, setFollowers] = useState([
     if (isMe) {
       console.log("its me")
       try {
-        const response = await fetch('http://3.34.190.41/follow/following', {
+        const response = await fetch('https://goormoagit-afdgu.run.goorm.site/follow/following', {
           method: "GET",
           headers: {
             'Authorization': `Bearer ${authToken}`,
@@ -199,7 +199,7 @@ const [followers, setFollowers] = useState([
     } else {
       console.log("its not me");
       try {
-        const response = await fetch(`http://3.34.190.41/follow/following/${parameter}`, {
+        const response = await fetch(`https://goormoagit-afdgu.run.goorm.site/follow/following/${parameter}`, {
           method: "GET",
           headers: {
             'Authorization': `Bearer ${authToken}`,

@@ -36,7 +36,7 @@ const Login = () => {
         localStorage.setItem("key", "please...");
         movePage('/main');
         e.preventDefault();
-        const apiURL = 'http://3.34.190.41/login';
+        const apiURL = 'https://goormoagit-afdgu.run.goorm.site/login';
         const requestbody = {
             userEmail: formData.userEmail,
             userPassword: formData.userPassword,

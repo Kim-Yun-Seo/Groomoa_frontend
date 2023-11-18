@@ -24,7 +24,7 @@ const ModifyProfile = ({ isOpen, close }) => {
         }
     });
     const authToken = localStorage.getItem("key");
-    const apiURL = "http://3.34.190.41/profile";
+    const apiURL = "https://goormoagit-afdgu.run.goorm.site//profile";
     const body = {
         "profileId": 3,
         "userInfo": {

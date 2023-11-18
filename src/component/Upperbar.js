@@ -66,7 +66,7 @@ const Upperbar = () => {
     const [allUserList, setAllUserList] = useState([]);
     const searchClicked = async () => {
         try {
-            const response = await fetch(`http://3.34.190.41/users`, {
+            const response = await fetch(`https://goormoagit-afdgu.run.goorm.site/users`, {
                 method: "GET",
                 headers: {
                     'Authorization': `Bearer ${authToken}`,

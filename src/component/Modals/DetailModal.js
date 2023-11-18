@@ -102,7 +102,7 @@ const DetailModal = ({ isOpen, close, groupId }) => {
         const fetchData = async () => {
             console.log(thisGroupId);
             try {
-                const response = await fetch(`http://3.34.190.41:8081/group/${groupId}`, {
+                const response = await fetch(`https://goormoagit-afdgu.run.goorm.site//group/${groupId}`, {
                     method: "GET",
                     headers: {
                         'Authorization': `Bearer ${authToken}`,
@@ -129,7 +129,7 @@ const DetailModal = ({ isOpen, close, groupId }) => {
         console.log(userId);
         console.log(groupId);
         try {
-            const response = await fetch(`http://3.34.190.41:8081/group/${groupId}/reject/${userId}`, {
+            const response = await fetch(`https://goormoagit-afdgu.run.goorm.site//group/${groupId}/reject/${userId}`, {
                 method: "GET",
                 headers: {
                     'Authorization': `Bearer ${authToken}`,
@@ -154,7 +154,7 @@ const DetailModal = ({ isOpen, close, groupId }) => {
         console.log(userId);
         console.log(groupId);
         try {
-            const response = await fetch(`http://3.34.190.41:8081/group/${groupId}/approve/${userId}`, {
+            const response = await fetch(`https://goormoagit-afdgu.run.goorm.site//group/${groupId}/approve/${userId}`, {
                 method: "GET",
                 headers: {
                     'Authorization': `Bearer ${authToken}`,
@@ -177,7 +177,7 @@ const DetailModal = ({ isOpen, close, groupId }) => {
 
     const fetchApplication = async () => {
         try {
-            const response = await fetch(`http://3.34.190.41:8081/group/${groupId}/apply`, {
+            const response = await fetch(`https://goormoagit-afdgu.run.goorm.site//group/${groupId}/apply`, {
                 method: "GET",
                 headers: {
                     'Authorization': `Bearer ${authToken}`,

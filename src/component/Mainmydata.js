@@ -21,7 +21,7 @@ const Mainmydata = () => {
             "interestings": null
         }
     });
-    const url = "http://3.34.190.41/profile/";
+    const url = "https://goormoagit-afdgu.run.goorm.site/profile/";
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -65,7 +65,7 @@ const Mainmydata = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://3.34.190.41/follow/following', {
+                const response = await fetch('https://goormoagit-afdgu.run.goorm.site/follow/following', {
                     method: "GET",
                     headers: {
                         'Authorization': `Bearer ${authToken}`,
@@ -106,7 +106,7 @@ const Mainmydata = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://3.34.190.41/follow/followers', {
+                const response = await fetch('https://goormoagit-afdgu.run.goorm.site/follow/followers', {
                     method: "GET",
                     headers: {
                         'Authorization': `Bearer ${authToken}`,
@@ -154,7 +154,7 @@ const Mainmydata = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://3.34.190.41/recommend', {
+                const response = await fetch('https://goormoagit-afdgu.run.goorm.site/recommend', {
                     method: "GET",
                     headers: {
                         'Authorization': `Bearer ${authToken}`,
