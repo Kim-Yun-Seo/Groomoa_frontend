@@ -10,7 +10,6 @@ import Goorm from "./Goorm";
 import DetailModal from "./Modals/DetailModal";
 import FollowerModal from "./Modals/FollowerModal";
 
-
 const Mypage = () => {
   const inUrl = useParams();
   const [followerOn, setFollowerOn ] = useState(false)

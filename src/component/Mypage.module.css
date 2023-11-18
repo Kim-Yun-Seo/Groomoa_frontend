@@ -87,6 +87,7 @@
 
 .interestCategory {
     flex-direction: row;
+    margin-top: 7px;
 }
 
 .category {
@@ -136,7 +137,7 @@
     flex-shrink: 0;
     color: white;
     margin-left: 30px;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 .groupData {
