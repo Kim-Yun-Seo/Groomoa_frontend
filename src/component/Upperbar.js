@@ -115,7 +115,7 @@ const Upperbar = () => {
                     className={search != "" ? `${css.searchUserOn}` : `${css.searchUser}`}
                     placeholder="이름/아이디 검색하기"
                 />
-                <button onClick={searchClicked}><img src={searchIcon} /></button>
+                <button onClick={searchClicked} style={{border: "none", backgroundColor: "white", marginLeft: "10px"}}><img src={searchIcon} /></button>
                 {isSearchOpen && <div className={css.searchResult}>
                     <SearchUser
                         isOpen={isSearchOpen}
@@ -148,7 +148,6 @@ const Upperbar = () => {
                     }}>로그아웃</button>
                 </div>
             </div>
-
         </div>
     )
 }

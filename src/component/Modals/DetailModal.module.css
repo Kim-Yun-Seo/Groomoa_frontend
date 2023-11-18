@@ -142,3 +142,12 @@
     margin-left: 20px;
     margin-top: -7px;
 }
+
+.btn {
+    width: 100px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #5604DD;
+    color: white;
+}

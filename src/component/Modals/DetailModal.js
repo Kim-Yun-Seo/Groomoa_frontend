@@ -145,16 +145,16 @@ const DetailModal = ({ isOpen, close, groupId }) => {
                     ))}
                 </ul>
                 {isHost ? (
-                    isRecruiting ? (<div><button>모집하기</button></div>) : (<div><button>마감하기</button></div>)
+                    isRecruiting ? (<div><button className={css.btn} >모집하기</button></div>) : (<div><button className={css.btn} >마감하기</button></div>)
                 ) : (
-                    isAllowed ? (<div><button>참가 중</button></div>) : (
-                        isApplicated ? (<div><button>요청됨</button></div>) : (<div><button>참가하기</button></div>)
+                    isAllowed ? (<div><button className={css.btn} >참가 중</button></div>) : (
+                        isApplicated ? (<div><button className={css.btn} >요청됨</button></div>) : (<div><button className={css.btn} >참가하기</button></div>)
                     )
                 )}
                 {isHost ? (
-                    <div><button onClick={handleChatGo}>채팅방 참여하기</button></div>
+                    <div><button className={css.btn} onClick={handleChatGo}>채팅방 참여하기</button></div>
                 ) : (
-                    isAllowed ? (<div><button onClick={handleChatGo}>채팅방 참여하기</button></div>) : null)}
+                    isAllowed ? (<div><button className={css.btn} onClick={handleChatGo}>채팅방 참여하기</button></div>) : null)}
             </div>
         </div>
     )
