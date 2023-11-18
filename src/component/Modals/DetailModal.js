@@ -148,7 +148,7 @@ const DetailModal = ({ isOpen, close, groupId }) => {
 
     const handleDecline = (userId) => {
         fetchDecline(userId);
-    }
+    };
 
     const fetchApproval = async (userId) => {
         console.log(userId);
@@ -173,7 +173,30 @@ const DetailModal = ({ isOpen, close, groupId }) => {
 
     const handleApproval = (userId) => {
         fetchApproval(userId);
-    }
+    };
+
+    const fetchApplication = async () => {
+        try {
+            const response = await fetch(`http://3.34.190.41:8081/group/${groupId}/apply`, {
+                method: "GET",
+                headers: {
+                    'Authorization': `Bearer ${authToken}`,
+                },
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            console.log(data);
+            setGroupInfo(data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
+    const handleApplication = () => {
+        fetchApplication();
+    };
 
     return (
         <div className={css.detailModalPage}>
@@ -219,7 +242,7 @@ const DetailModal = ({ isOpen, close, groupId }) => {
                     ) : (<div><button className={css.btn} onClick={handleRecruitClick}>마감하기</button></div>)
                 ) : (
                     isAllowed ? (<div><button className={css.btn}>참가 중</button></div>) : (
-                        isApplicated ? (<div><button className={css.btn}>요청됨</button></div>) : (<div><button className={css.btn} >참가하기</button></div>)
+                        isApplicated ? (<div><button className={css.btn} onClick={handleApplication}>요청됨</button></div>) : (<div><button className={css.btn} >참가하기</button></div>)
                     )
                 )}
                 {isHost ? (
