@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 const DetailModal = ({ isOpen, close, groupId }) => {
     const thisGroupId = groupId;
     const movePage = useNavigate();
+    localStorage.setItem("userEmail", "박민석");
     const myUserEmail = localStorage.getItem("userEmail");
     const handleChatGo = () => {
         movePage(`/chat-room/${thisGroupId}/${myUserEmail}`);
@@ -117,11 +118,61 @@ const DetailModal = ({ isOpen, close, groupId }) => {
             }
         }
         fetchData();
-    }, []);
+    }, [groupInfo]);
     const isAllowed = groupInfo.participants.some(participant => participant.userEmail === myUserEmail);
     const isApplicated = groupInfo.participants.some(applicants => applicants.userEmail === myUserEmail)
     const [isRecruiting, setRecruitiing] = useState(!groupInfo.close);
-    const handleRecruitClick = () => { setRecruitiing(prev => !prev); }
+    const handleRecruitClick = () => { setRecruitiing(prev => !prev); };
+
+    const fetchDecline = async (userId) => {
+        console.log(userId);
+        console.log(groupId);
+        try {
+            const response = await fetch(`http://3.34.190.41:8081/group/${groupId}/reject/${userId}`, {
+                method: "GET",
+                headers: {
+                    'Authorization': `Bearer ${authToken}`,
+                },
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            console.log(data);
+            setGroupInfo(data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
+    const handleDecline = (userId) => {
+        fetchDecline(userId);
+    }
+
+    const fetchApproval = async (userId) => {
+        console.log(userId);
+        console.log(groupId);
+        try {
+            const response = await fetch(`http://3.34.190.41:8081/group/${groupId}/approve/${userId}`, {
+                method: "GET",
+                headers: {
+                    'Authorization': `Bearer ${authToken}`,
+                },
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            console.log(data);
+            setGroupInfo(data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
+    const handleApproval = (userId) => {
+        fetchApproval(userId);
+    }
 
     return (
         <div className={css.detailModalPage}>
@@ -136,7 +187,12 @@ const DetailModal = ({ isOpen, close, groupId }) => {
                             <div className={css.singlePartInfo}>
                                 <p className={css.singlePartId}>@{partList.userEmail}</p>
                                 <p className={css.singlePartName}>{partList.userName}</p>
+                                <div>
+                                    <button onClick={() => { handleApproval(partList.userId) }}>수락</button>
+                                    <button onClick={() => { handleDecline(partList.userId) }}>거절</button>
+                                </div>
                             </div>
+
                         </div>
                     ))}
                 </ul>) : null}
