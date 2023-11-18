@@ -8,17 +8,19 @@ const Mainmydata = () => {
 
     const authToken = localStorage.getItem("key");
 
-    const [profile, setProfile] = useState([
-        {
-            "userId": 2,
-            "userEmail": "goormoa2",
-            "userName": "구르모아2",
-            "followDetailListDTO": {
-                "profileId": 2,
-                "profileImg": "수정용이미지2"
-            }
+    const [profile, setProfile] = useState({
+        "profileId": 10,
+        "userInfo": {
+            "userId": 11,
+            "userEmail": "goormoa",
+            "userName": "구름이"
+        },
+        "profileInfo": {
+            "profileImg": null,
+            "participatingGroups": null,
+            "interestings": null
         }
-    ]);
+    });
     const url = "http://3.34.190.41/profile/";
     useEffect(() => {
         const fetchData = async () => {
@@ -127,25 +129,25 @@ const Mainmydata = () => {
         {
             "userId": 3,
             "userEmail": "slsdfkls",
-            "userName": "왈왈1",
+            "userName": "구름이",
             "profileImg": null
         },
         {
             "userId": 3,
             "userEmail": "vnlxklsl",
-            "userName": "왈왈2",
+            "userName": "정목이",
             "profileImg": null
         },
         {
             "userId": 3,
             "userEmail": "eieie",
-            "userName": "왈왈3",
+            "userName": "성주",
             "profileImg": null
         },
         {
             "userId": 3,
             "userEmail": "emaipwl3",
-            "userName": "왈왈4",
+            "userName": "민석이",
             "profileImg": null
         }
     ]);
@@ -174,14 +176,15 @@ const Mainmydata = () => {
     const handleFollowClick = () => {
         // 모달짜기
     }
+    console.log('',profile.userEmail)
 
     return (
         <div className={css.dataList}>
             <div className={css.profile}>
-                
                 <div className={css.textData}>
-                    <p className={css.id}>@{profile.userEmail}</p>
-                    <p className={css.name}>{profile.userName}</p>
+                    <RandomImage />
+                    <p className={css.id}>@{profile.userInfo.userEmail}</p>
+                    <p className={css.name}>{profile.userInfo.userName}</p>
                 </div>
             </div>
             <div className={css.follow}>
@@ -200,10 +203,10 @@ const Mainmydata = () => {
                     recommend.map((user) => (
                         <div key={user.userId}>
                             {/* <img src={user.profileImg}></img> */}
-                            <RandomImage/>
+                            <RandomImage />
                             <div>
                                 <p>@{user.userEmail}</p>
-                                <p>{user.userName}</p>
+                                <p style={{marginBottom: "30px", marginTop: "-10px"}}>{user.userName}</p>
                             </div>
                         </div>
                     ))}

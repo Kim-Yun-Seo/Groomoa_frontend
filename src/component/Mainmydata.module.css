@@ -22,8 +22,8 @@
 }
 
 .textData {
-    margin-top: -10px;
-    margin-left: 25px;
+    /* margin-top: -10px; */
+    margin-left: -65px;
     /* display: flex; */
     flex-direction: column;
     width: 170px;
@@ -80,7 +80,9 @@
 
 .recommendFriend{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-left: -10px;
 }
 
 .underLine {
