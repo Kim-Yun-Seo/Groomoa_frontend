@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import RandomImage from "../RandomPerson";
 
 const SearchUser = ({isOpen, searchResult, handleShowButtonClick}) => {
     console.log(searchResult)
@@ -12,7 +13,8 @@ const SearchUser = ({isOpen, searchResult, handleShowButtonClick}) => {
                             searchResult.map((user)=>(
                                 <div key={user.userId}>
                                     <div>
-                                        <img src={user.profileImg}></img>
+                                        {/* <img src={user.profileImg}></img> */}
+                                        < RandomImage />
                                         <p>{user.userName}</p>
                                         <button onClick={()=>{handleShowButtonClick(user.userId);
                                         console.log("worked!");

@@ -2,6 +2,7 @@ import css from './Mainmydata.module.css'
 import userImage from "../images/userImage.png";
 import underLine from '../images/mydataUnderLine.svg'
 import { useEffect, useState } from 'react';
+import RandomImage from "../component/RandomPerson";
 
 const Mainmydata = () => {
 
@@ -125,26 +126,26 @@ const Mainmydata = () => {
     const [recommend, setRecommend] = useState([
         {
             "userId": 3,
-            "userEmail": "email3",
+            "userEmail": "slsdfkls",
+            "userName": "왈왈1",
+            "profileImg": null
+        },
+        {
+            "userId": 3,
+            "userEmail": "vnlxklsl",
+            "userName": "왈왈2",
+            "profileImg": null
+        },
+        {
+            "userId": 3,
+            "userEmail": "eieie",
             "userName": "왈왈3",
             "profileImg": null
         },
         {
             "userId": 3,
-            "userEmail": "email3",
-            "userName": "왈왈3",
-            "profileImg": null
-        },
-        {
-            "userId": 3,
-            "userEmail": "email3",
-            "userName": "왈왈3",
-            "profileImg": null
-        },
-        {
-            "userId": 3,
-            "userEmail": "email3",
-            "userName": "왈왈3",
+            "userEmail": "emaipwl3",
+            "userName": "왈왈4",
             "profileImg": null
         }
     ]);
@@ -195,10 +196,11 @@ const Mainmydata = () => {
                 <img src={underLine}></img>
             </div>
             <div>
-                <ul className={css.following}>{
+                <ul className={css.recommendFriend}>{
                     recommend.map((user) => (
                         <div key={user.userId}>
-                            <img src={user.profileImg}></img>
+                            {/* <img src={user.profileImg}></img> */}
+                            <RandomImage/>
                             <div>
                                 <p>@{user.userEmail}</p>
                                 <p>{user.userName}</p>

@@ -7,6 +7,7 @@ import underbar from '../images/groupSelectUnder.svg';
 import goorm from '../images/goorm_login.svg';
 import search from '../images/search_purple.svg';
 import NewGroupMake from './Modals/NewGroupMake';
+import RandomImage from './RandomPerson';
 
 export default function Groups() {
 

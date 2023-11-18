@@ -78,7 +78,7 @@
     line-height: normal;
 }
 
-.following{
+.recommendFriend{
     display: flex;
     flex-direction: row;
 }
