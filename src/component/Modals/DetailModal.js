@@ -1,16 +1,14 @@
 import { useEffect, useState } from 'react';
 import css from './DetailModal.module.css';
 import closeImg from "../../images/close.svg";
+import peoplePurple from "../../images/peoplePurple.svg";
+import peopleWhite from "../../images/peopleWhite.svg";
 
 const DetailModal = ({isOpen, close, groupId}) => {
+    localStorage.getItem("userId");
     console.log(groupId);
     const [modalOpen, setModalOpen] = useState(isOpen);
-
-    const handleCloseModal = () => {
-        setModalOpen(false);
-        close();
-    }
-
+    const handleCloseModal = () => { setModalOpen(false); close(); }
     const [ groupInfo, setGroupInfo ] = useState({
         "groupId": 1,
         "host": {
@@ -90,7 +88,7 @@ const DetailModal = ({isOpen, close, groupId}) => {
         ],
         "maxCount": 12,
         "currentCount": 1,
-        "close": null
+        "close": false
     });
     const userId = localStorage.getItem("userId");
     const authToken = localStorage.getItem("key");
@@ -116,6 +114,11 @@ const DetailModal = ({isOpen, close, groupId}) => {
         }
         fetchData();
     }, []);
+    const [ isHost, setHost ] = useState(false);
+    const isAllowed = groupInfo.participants.some(participant => participant.userId === parseInt(userId, 10));
+    const isApplicated = groupInfo.participants.some(applicants => applicants.userId === parseInt(userId, 10))
+    const isRecruiting = !groupInfo.close;
+  
 
     return (
         <div className={css.detailModalPage}>
@@ -139,8 +142,13 @@ const DetailModal = ({isOpen, close, groupId}) => {
                         </div>
                     ))}
                 </ul>
-                <p>hostId랑 userId 비교해서 맞으면 applicants 볼 수 있도록. 누르면 click event</p>
-
+                {isHost ? (
+                    isRecruiting ? (<div>모집하기</div>) : (<div>마감하기</div>)
+                ) : (
+                    isAllowed ? (<div><p>참가 중</p></div>) : (
+                        isApplicated ? (<div><p>요청됨</p></div>) : (<div>참가하기</div>)
+                    )
+                )}
             </div>
         </div>
     )
